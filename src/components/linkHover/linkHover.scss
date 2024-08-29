@@ -1,0 +1,37 @@
+@import "../../app/variables.scss";
+
+a.linkHover  {
+  color: $white;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $black;
+  position: relative;
+  transition: all 0.1s ease-in-out;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  height: 23px;
+  @media(max-width: 425px){
+    height: 24px;
+  }
+  &:hover{
+    span{
+      transform: translateY(-23px);
+      overflow: hidden;
+      color: #5B3524;
+      // color: #1c211e;
+      font-weight: 900;
+    }
+  }
+  span{
+    display: block;
+    transition: all 0.5s;
+  } 
+  &.homePage {
+    &:hover {
+      span {
+        color: #1c211e; // Specific hover color for the Home page
+      }
+    }
+  }
+}

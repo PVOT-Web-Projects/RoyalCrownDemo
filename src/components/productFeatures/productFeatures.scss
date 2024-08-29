@@ -1,0 +1,67 @@
+.productFeaturesWrapper {
+  padding: 100px 70px;
+
+  @media (max-width : 575px) {
+    padding: 80px 30px;
+  }
+
+  @media (max-width : 375px) {
+    padding: 80px 20px;
+  }
+
+  .productFeaturesInner {
+    .productFeaturesHeader {
+      text-align: center;
+      font-size: 35px;
+      padding: 40px 0;
+    }
+
+    .productFeaturesContainer {
+      display: grid;
+      grid-template-columns: repeat(5 , 1fr);
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.5s ease;
+      
+      @media (max-width: 991px) {
+        flex-direction: column;
+        align-items: center; // Center items when in column layout
+        grid-template-columns: repeat(2 , 1fr);
+        gap: 1rem;
+      }
+
+      @media (max-width : 575px) {
+        grid-template-columns: repeat(1,1fr);
+      }
+
+      .productFeaturesContainerInner {
+        &:hover{
+          transform: scale(1.1);
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center; // Center items horizontally
+        text-align: center;
+        gap: 1rem;
+        width: 100%; // Ensure the container uses full width for better centering
+
+        .productImage {
+          display: flex;
+          justify-content: center; // Center image horizontally
+          align-items: center; // Center image vertically if needed
+          width: 100%; // Ensure it takes full width of the container
+        }
+
+        .productFeatureImage {
+          max-width: 100%;
+          height: auto;
+        }
+
+        .productDescription {
+          display: flex;
+          justify-content: center; // Center description horizontally
+        }
+      }
+    }
+  }
+}

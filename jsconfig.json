@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["src/components/*"],
+      "@/app/*": ["src/app/*"],
+      "@/images/*": ["src/images/*"],
+      "@/ValidationSchema/*": ["src/components/forms/ValidationSchema/*"],
+      "@/fonts/*": ["src/fonts/*"],
+    }
+  },
+  "include": ["src"]
+}

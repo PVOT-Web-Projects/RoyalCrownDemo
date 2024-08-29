@@ -1,0 +1,96 @@
+.productMainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 0px 0 0px 0;
+    margin: 0px 0 -65px 0;
+
+    @media (min-width : 991px) and (max-width : 1900px) {
+        overflow-x: hidden;
+    }
+
+    @media (max-width : 991px) {
+        margin: 0;
+        padding:  0 0 30px 0;
+    }
+}
+
+.productMain {
+    position: relative;
+    /* Add this to ensure positioning of the border element */
+
+    .productHeader {
+        text-align: center;
+        font-size: 80px;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+
+        .productHeaderInner {
+            font-family: "made_mirage_thin";
+        }
+
+        @media (max-width: 575px) {
+            font-size: 50px;
+        }
+    }
+
+    .productNumber {
+        text-align: right;
+        font-size: 350px;
+        opacity: 50%;
+        /* font-family: "made_mirage_thin"; */
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 1px;
+        color: black;
+        margin-right: -80px;
+
+        @media (max-width: 991px) {
+            display: none;
+        }
+    }
+
+    .productDescription {
+        padding: 0 80px;
+        width: 50%;
+        transform: translate(10px, -200px);
+        position: relative;
+        /* Ensure relative positioning for the border */
+
+        @media (max-width: 991px) {
+            width: 100%;
+            padding: 0px;
+            transform: translate(10px, 10px);
+        }
+
+        .productDescriptionBorder {
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 0%;
+            /* Start with width of 0% */
+            height: 1px;
+            background-color: #5B3524;
+            z-index: -1;
+            /* Ensure it is behind other content */
+        }
+
+        .productDescriptionHeader {
+            font-size: 25px;
+            text-transform: uppercase;
+
+            @media (max-width: 991px) {
+                padding: 20px;
+            }
+        }
+
+        .productDescriptionContent {
+            padding-top: 20px;
+            font-size: 21px;
+
+            @media (max-width: 991px) {
+                padding: 0 20px;
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+@import "../../../app/variables.scss";
+@import "../../../fonts/fonts.scss";
+
+.yello_btn {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  padding: 0 2rem;
+  background: $white;
+  background-size: 400%;
+  color: $black;
+  border: none;
+  font-size: 18px;
+  line-height: 16px;
+  // font-family: "futura_medium";
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  width: fit-content;
+  .button-content {
+    position: relative;
+    z-index: 1;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
+    background: $yellow;
+    transition: all 0.475s;
+  }
+  &:hover {
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+}

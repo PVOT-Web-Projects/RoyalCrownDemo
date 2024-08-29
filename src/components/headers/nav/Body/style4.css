@@ -1,0 +1,32 @@
+.nav_body {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+.nav_body a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav_body p {
+  margin: 0px;
+  display: flex;
+  overflow: hidden;
+  font-size: 32px;
+  padding-right: 30px;
+  padding-top: 10px;
+  font-weight: 300;
+  font-family: "gilroy";
+}
+
+@media only screen and (min-width: 1000px) {
+  .nav_body {
+    max-width: 1200px;
+    margin-top: 80px;
+  }
+  .nav_body p {
+    font-size: 4.9vw;
+    padding-right: 2vw;
+  }
+}

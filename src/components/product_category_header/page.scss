@@ -1,0 +1,34 @@
+.productCategoryHeader {
+    padding: 80px 0;
+    .productCategoryHeaderInner {
+        background: url("../../images/utkarsh-bhai\ \(1\).jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: 80vh;
+        display: flex;
+        align-items: flex-end;
+        background-size: cover;
+        color: white;
+
+        .productCategoryHeaderText {
+            display: flex;
+            margin-right: auto;
+            margin-left: auto;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0px 0px 50px 0px;
+            padding: 20px 0px 20px 60px;
+
+            @media (max-width : 375px) {
+                padding: 20px 0 20px 40px;
+            }
+            
+            .productCategoryHeaderTextInnner{
+                font-family: "made_mirage_bold";
+                font-size: 30px;
+                
+            }
+        }
+    }
+}

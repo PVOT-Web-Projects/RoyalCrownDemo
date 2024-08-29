@@ -1,0 +1,65 @@
+.GetStartedSection {
+  padding-top: 5rem;
+  text-align: center;
+  @media(max-width:575px){
+    padding: 50px 20px 0;
+  }
+  .GetStartedFirstHeader {
+    position: relative;
+    .TextFirst {
+      font-size: 50px;
+      font-weight: 400;
+      @media(max-width: 575px){
+        font-size: 40px;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        top: 70px;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        background-color: #5B3524;
+        width: 150px;
+        height: 2px;
+      }
+    }
+  }
+  .TextSecond {
+    padding-top: 3rem;
+    width: 60%;
+    margin: 0 auto;
+    @media(max-width:768px){
+      width: 80%;
+    }
+    @media(max-width: 575px){
+      width: 100%;
+    }
+    .TextSecondInner {
+      font-size: 22px;
+      text-align: center;
+    }
+    .TextSecondInnerFirst {
+      font-size: 20px;
+      padding: 30px 0;
+    }
+  }
+  .YellowTextOuter {
+    .YellowTextInner {
+      color: #5B3524;
+      font-size: 28px;
+      font-weight: 900;
+      font-family: "made_mirage_thin";
+      text-align: center;
+      padding-top: 20px;
+      padding-bottom: 40px;
+      letter-spacing: 2px;
+      @media(max-width:425px){
+        font-size: 25px;
+      }
+      @media(max-width:320px){
+        font-size: 20px;
+      }
+    }
+  }
+}

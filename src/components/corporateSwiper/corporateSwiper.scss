@@ -1,0 +1,143 @@
+.corporateSwiperWrapper {
+    padding: 50px 0 50px 50px;
+  
+    @media (max-width: 575px) {
+      padding: 50px 0 30px 20px;
+    }
+  
+    @media (min-width: 1600px) {
+      padding: 50px 0 30px 60px;
+    }
+  
+    .corporateSwiperContainer {
+      .corporateSwiperHeaderContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 0;
+  
+        .swiperHeader {
+          font-size: 35px;
+
+          @media (max-width : 575px) {
+            font-size: 30px;
+          }
+
+          @media (max-width : 475px) {
+            font-size: 25px;
+          }
+        }
+  
+        .corporateSwiperArrowContainer {
+          display: flex;
+          gap: 10px;  
+          align-items: center;
+          justify-content: center;
+          margin: 10px 0 0 0;
+
+          @media (max-width : 475px) {
+            gap: 0px;
+          }
+        }
+  
+        .swiper-button-prev,
+        .swiper-button-next {
+          padding: 10px;
+          position: relative;
+          border-radius: 50%;
+          cursor: pointer;
+          width: 100%;
+        }
+  
+        .swiper-button-prev {
+          /* Position the left arrow */
+        //   top: 50%;
+
+        &::after{
+          content: "";
+          font-family: "made_mirage_regular";
+        }
+        }
+  
+        .swiper-button-next {
+          /* Position the right arrow */
+        //   top: 50%;
+        &::after{
+          content: "";
+          font-family: "made_mirage_regular";
+        }
+        }
+      }
+  
+      .corporateSwiperCardOuter {
+        color: white;
+  
+        .coporateSwiperCardWrapper {
+          position: relative;
+  
+          .corporateSwiperCardInner {
+            overflow: hidden;
+            border-radius: 10px;
+  
+            .corporateImage {
+              cursor: pointer;
+              height: auto;
+              display: block;
+              max-width: 100%;
+              // filter: brightness(0.35);
+              border-radius: 10px;
+              transition: all 0.9s ease-in-out;
+
+              @media (max-width : 675px) {
+                margin-left: -15px;
+              }
+  
+              &:hover {
+                transform: scale(1.2);
+              }
+            }
+          }
+  
+          .corporateSwiperContent {
+            position: absolute;
+            bottom: 50px;
+            left: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+  
+            .swiperCardHeaderInner {
+              font-family: "made_mirage_bold";
+              font-size: 35px;
+  
+              @media (max-width: 768px) {
+                font-size: 30px;
+              }
+            }
+  
+           
+          }
+        }
+        .swiperCardDescriptionInner {
+          padding-top: 1rem;
+          font-size: 21px;
+          width: 100%;
+          text-align: center;
+          color: #5b3524;
+
+          @media (max-width: 991px) {
+            width: 100%;
+          }
+
+          @media (max-width: 768px) {
+            font-size: 18px;
+          }
+
+          @media (max-width : 675px) {
+            width: 90%;
+          }
+        }
+      }
+    }
+  }
+  

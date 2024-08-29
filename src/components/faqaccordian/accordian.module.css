@@ -1,0 +1,151 @@
+.rcAccordionToggle {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  justify-content: space-between;
+  background-color: transparent;
+  border-top: 1px solid #5B3524;
+  /* border-bottom: 1px solid #5B3524; */
+  padding: 20px 20px 20px 0;
+  transition: 0.3s;
+}
+.containerFluid {
+  padding-bottom: 5rem;
+  /* padding-top: 8rem; */
+}
+.rcAccordionToggleActive {
+  border-bottom: none;
+  background-color: #FFF5ED;
+  /* color: black; */
+}
+
+.rcAccordionToggleActive .rcAccordionIcon {
+  transform: rotate(180deg);
+  /* color: black; */
+}
+.rcAccordionCard {
+  padding: 0 50px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.rcAccordionCard:last-child {
+  margin-bottom: 0;
+}
+
+.rcAccordionTitle {
+  font-weight: 500;
+  font-size: 24px;
+  position: relative;
+  margin-bottom: 0;
+  /* color: white; */
+  transition: 0.3s;
+}
+
+.rcAccordionToggleActive .rcAccordionTitle {
+  color: #5B3524;
+}
+
+.rcAccordionIcon {
+  position: relative;
+  top: 2px;
+  transition: 0.35s;
+  font-size: 12px;
+}
+
+.rcAccordionBody {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 20px 18px 20px 0;
+}
+
+.rcAccordionBody p {
+  margin-bottom: 0;
+  font-size: 18px;
+  width: 95%;
+  font-weight: 400;
+  /* color: white; */
+}
+
+.rcCollapse {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.35s ease;
+}
+
+.rcCollapseShow {
+  height: auto;
+}
+
+.FaqText {
+  /* color: white; */
+  font-size: 50px;
+  font-weight: 400;
+  text-align: center;
+  /* padding: 40px 0; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.FaqsTextOuterText {
+  width: 50%;
+  margin: 0 auto;
+}
+.FaqsTextInner {
+  font-size: 30px;
+  text-align: center;
+  font-family: "made_mirage_thin";
+  font-weight: 500;
+  /* width: 50%; */
+}
+.buttonOuterFaq {
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+.FaqsInner{
+  font-size: 50px;
+}
+@media (min-width: 1500px){
+  .FaqsTextOuterText {
+    width: 38%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 1024px){
+  .FaqsTextOuterText {
+    width: 70%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 768px) {
+  .FaqsTextOuterText {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .rcAccordionTitle {
+    width: 85%;
+  }
+  .rcAccordionCard {
+    padding: 0 25px;
+  }
+}
+@media (max-width: 575px) {
+  .FaqsInner{
+    font-size: 40px;
+  }
+  .FaqsTextInner{
+    font-size: 22px;
+  }
+}
+@media (max-width: 425px) {
+  .rcAccordionCard {
+    padding: 0 20px;
+  }
+  .FaqText {
+    padding: 30px 20px;
+  }
+}

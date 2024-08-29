@@ -1,0 +1,64 @@
+.laminatesHero {
+    display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
+    padding: 40px 70px;
+    overflow: hidden;
+
+    @media (max-width : 575px) {
+        padding: 40px 30px;
+    }
+
+
+    @media (max-width : 375px) {
+        padding: 80px 20px;
+    }
+
+    .laminatesWrapper {
+        .laminatesHeader {
+            text-transform: uppercase;
+            font-size: 35px;
+            font-family: "made_mirage_bold";
+        }
+
+        .laminatesBody {
+            .laminateBodyDescription {
+                margin: 30px 0;
+                font-size: 21px;
+            }
+
+            .laminatesBoxOuter {
+
+                .laminatesBoxInner {
+                    display: flex;
+                    justify-content: space-evenly;
+
+                    @media (max-width : 991px) {
+                        flex-direction: column;
+                        gap: 2rem;
+                    }
+
+                    .laminatesBox1 {
+                        background-color: #edd7c2;
+                        padding: 25px 80px 25px 80px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 1rem;
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.laminateIconImage {
+    height: 50px;
+    width: 50px;
+}
+
+.laminatesBoxHeader {
+    font-size: 21px;
+}

@@ -1,0 +1,114 @@
+.PrivacyMainHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .PrivacyMainHeaderInner {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+  }
+  .ClaimBannerImg {
+  }
+  .PrivacyMainHeaderInnerText {
+  
+    .PrivacyMainHeaderInnerTextinner {
+      text-align: center;
+      font-size: 80px;
+      font-weight: 500;
+      @media (max-width: 575px) {
+        font-size: 45px;
+      }
+    }
+    .TextCommitInner {
+      p {
+        text-align: center;
+        margin: 0 auto;
+        font-size: 25px;
+        font-weight: 500;
+        width: 70%;
+        margin-top: 10px;
+        @media (max-width: 575px) {
+          font-size: 18px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+.productHeroFooter {
+  margin: -80px 0 0 0;
+  cursor: pointer;
+  color: black;
+
+  .nectar-scroll-icon {
+      .nectar-scroll-icon {
+          position: relative;
+          z-index: 1; // Ensure the SVG is above the gradient circle
+      
+          .nectar-scroll-icon-path {
+            stroke: #5b3524;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            fill: none;
+      
+            // Add a white glowing border animation
+            animation: shine 3s infinite linear;
+      
+            // Shining animation
+            @keyframes shine {
+              0% {
+                stroke: #5b3524;
+                filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0));
+              }
+              50% {
+                stroke: #5b3524;
+                filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+              }
+              100% {
+                stroke: #5b3524;
+                filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0));
+              }
+            }
+          }
+      
+          #scroll-line {
+            stroke: #5b3524;
+            stroke-width: 2;
+      
+            // Optional: You can add a glow effect to the scroll line as well
+            animation: lineShine 3s infinite linear;
+      
+            @keyframes lineShine {
+              0% {
+                stroke: #5b3524;
+                filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0));
+              }
+              50% {
+                stroke: #5b3524;
+                filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1));
+              }
+              100% {
+                stroke: #5b3524;
+                filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0));
+              }
+            }
+          }
+        }
+      
+        // Add the circular light-to-dark gradient
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 100px; // Adjust the size as needed
+          height: 100px; // Adjust the size as needed
+          background: radial-gradient(circle, rgb(185, 141, 125) 0%, rgba(91, 53, 36, 1) 70%, rgba(0, 0, 0, 0.7) 100%);
+          border-radius: 50%;
+          z-index: 0; // Place behind the SVG
+        }
+  }
+}

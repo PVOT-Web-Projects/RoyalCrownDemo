@@ -1,0 +1,156 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: white !important;
+  -webkit-box-shadow: 0 0 0 30px rgb(28, 33, 30) inset !important;
+}
+input:-internal-autofill-selected {
+  background-image: none !important;
+  background-color: light-dark(
+    rgb(232, 240, 254),
+    rgba(70, 90, 126, 0.4)
+  ) !important;
+}
+$form-bg: #FFF5ED;
+$form-text: #5B3524;
+$form-border: #5B3524;
+// $form-button-bg: #ffc107;
+$form-button-text: #5B3524;
+
+.form-container {
+  background-color: $form-bg;
+  margin: 0 250px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  @media (max-width: 1199px) {
+    margin: 0 100px;
+  }
+  @media (max-width: 991px) {
+    margin: 0 50px;
+  }
+  @media (max-width: 575px) {
+    margin: 0 25px;
+  }
+}
+.SecondFormContainer {
+  padding: 20px 50px;
+  @media (max-width: 575px) {
+    padding: 20px 20px;
+  }
+}
+.CareerHeader {
+  text-align: center;
+  // color: #000;
+  margin-bottom: 2.5rem;
+  font-size: 30px;
+}
+
+.CareerForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 25px;
+  @media(max-width: 575px){
+    margin-bottom: 20px;
+  }
+  @media(max-width: 495px){
+    gap: 1rem;
+  }
+  &.checkbox-row {
+    gap: 0.5rem;
+    align-items: center;
+    // color: #000;
+    font-size: 22px;
+    font-weight: 500;
+    @media(max-width: 375px){
+      font-size: 16px;
+    }
+  }
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 92px;
+
+  label {
+    margin-bottom: 0.5rem;
+    color: $form-text;
+    font-weight: 500;
+    font-size: 22px;
+  }
+
+  input {
+    padding: 0px 0 10px 0;
+    border-bottom: 1px solid $form-border;
+    outline: none;
+    border-left: none;
+    font-size: 20px;
+    color: #5B3524;
+    border-top: none;
+    border-right: none;
+    background-color: transparent;
+  }
+  p {
+    color: red;
+  }
+  .career-select {
+    padding: 0px 0 12px 0;
+    // color: black;
+    border-bottom: 1px solid #5B3524;
+
+    @media (max-width: 575px) {
+      // padding: 10px 20px;
+      gap: 1rem;
+    }
+    @media only screen and (min-width: 576px) and (max-width: 1024px) {
+      // padding: 10px 20px;
+      gap: 1rem;
+    }
+  }
+}
+
+.p-dropdown-panel {
+  .p-dropdown-items-wrapper {
+    max-height: 200px;
+    margin-top: 3px;
+    backdrop-filter: blur(20px);
+
+    &::-webkit-scrollbar {
+      width: 12px; /* Width of the scrollbar */
+      height: 680px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #5B3524; /* Scrollbar thumb color */
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #d9d9d91f; /* Scrollbar track color */
+    }
+  }
+
+  .p-dropdown-item {
+    padding: 5px 6px;
+    transition: all 0.5s ease;
+    // color: black;
+    font-size: 18px;
+  }
+
+  .p-dropdown-item:hover {
+    background-color: #5B3524;
+    color: white;
+  }
+}
+.p-dropdown-label {
+  font-size: 20px !important;
+  color: #757575;
+}
+

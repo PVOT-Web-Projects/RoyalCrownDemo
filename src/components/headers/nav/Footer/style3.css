@@ -1,0 +1,32 @@
+.footer_navbar {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  font-size: 12px;
+  margin-top: 5.5rem;
+  color: #ffffff;
+  font-family: "gilroy";
+  
+}
+.ul {
+  width: 50%;
+  margin-top: 10px;
+  overflow: hidden;
+  list-style-type: none;
+  padding: 0 10px;
+}
+
+.ul li span {
+  color: #ffffff;
+  font-family: "gilroy";
+}
+
+@media only screen and (min-width: 1000px) {
+  .footer_navbar {
+    justify-content: space-between;
+
+  }
+  .ul {
+    width: auto;
+  }
+}

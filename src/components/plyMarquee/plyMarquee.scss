@@ -1,0 +1,142 @@
+@import "../../app/variables.scss";
+
+.ply_marquee {
+  background-color: #FFF5ED;
+  padding: 100px 0;
+  overflow: hidden;
+  .MarqueeTextFirst{
+    font-size: 45px;
+    padding: 20px 70px;
+    text-transform: uppercase;
+    font-weight: 400;
+    @media(max-width: 425px){
+      padding: 0px 20px 10px;
+    }
+  }
+  .MarqueeTextSecond{
+    font-size: 22px;
+    padding: 0px 100px;
+    font-weight: 300;
+    width: 45%;
+    @media(min-width: 1500px){
+      width: 35%;
+    }
+    @media(max-width: 1200px){
+      width: 55%;
+    }
+    @media(max-width: 575px){
+      width: 85%;
+      padding: 0px 50px 20px;
+    }
+    @media(max-width: 425px){
+      padding: 0px 20px 10px;
+    }
+  }
+  .MarqueeTextSecondInner{
+    padding-top: 1rem;
+  }
+  .MarqueMainSection{
+    // padding-left: 100px;
+  }
+  
+  .ply_list {
+    padding: 150px 0 100px;
+    @media (max-width: 991px) {
+      padding: 100px 0;
+    }
+    @media (max-width: 575px) {
+      padding: 50px 0;
+    }
+    .ply_item {
+      display: inline-block;
+      padding: 0 20px;
+      cursor: pointer;
+      @media (max-width: 575px) {
+        padding: 0 10px;
+      }
+      &:hover {
+        .ply_info {
+          transform: translateY(120px);
+          opacity: 1;
+        }
+      }
+      img{
+        width:100%
+
+      }
+      &.top1 {
+        transform: translateY(-40px);
+      }
+
+      &.bottom1 {
+        transform: translateY(40px);
+      }
+
+      .ply_info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.4s;
+        position: absolute;
+        margin-left: 20px;
+        // z-index: -1;
+        .info_left {
+          border: 1px solid white;
+          padding: 5px 20px;
+          color: white;
+          .num {
+            font-size: 20px;
+            text-transform: uppercase;
+          }
+          .text {
+            font-size: 16px;
+            text-transform: uppercase;
+            text-align: center;
+          }
+        }
+        .info_right {
+          border-left: 1px solid white;
+          margin-left: 12px;
+          padding: 5px 0 5px 11px;
+          color: white;
+          .ply_name {
+            font-size: 20px;
+            text-transform: uppercase;
+          }
+          .ply_wood {
+            font-size: 16px;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}
+// .p-dropdown-items-wrapper {
+//   max-height: 100% !important;
+//   width: 100% !important;
+// }
+// ul.p-dropdown-items {
+//   background-color: $white;
+//   color: $black;
+//   padding: 5px 10px 10px;
+//   li {
+//     padding: 5px 10px;
+//     font-size: 18px;
+//     border-bottom: 1px solid $black;
+//     width: 100%;
+//     margin: 0 auto;
+//     transition: all 0.4s;
+
+//     @media (max-width: 767px) {
+//       padding: 5px;
+//       font-size: 15px;
+//     }
+
+//     &:hover {
+//       background-color: red;
+//     }
+//   }
+// }

@@ -1,0 +1,76 @@
+@import "../../../app/variables.scss" ;
+footer {
+  padding: 80px 40px 27px 40px;
+  @media(min-width: 1500px){
+    padding: 80px 40px 27px 40px;
+  }
+  @media(max-width:575px){
+    padding: 50px 20px;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    @media(max-width:1600px){
+      gap: 60px;
+    }
+    @media(max-width:1399px){
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    @media(max-width:991px){
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    @media(max-width:767px){
+      gap: 10px;
+      justify-content: space-between;
+    }
+    ul {
+      @media(max-width:991px){
+        width: 300px;
+      }
+      @media(max-width:767px){
+        width: 48%;
+      }
+      @media(max-width:575px){
+        width: 100%;
+      }
+      li {
+        padding: 0 0 15px;
+        text-align: center;
+        @media(max-width:767px){
+          padding: 0 0 18px;
+        }
+        @media(max-width:575px){
+          padding: 0 0 12px;
+        }
+        a {
+          color: $white;
+          text-decoration: none;
+         
+        }
+      }
+    }
+   
+  }
+  .FooteriMg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    // width: 100%;
+    @media (max-width: 575px){
+      padding-bottom: 2rem;
+    }
+  }
+  .copyright {
+    text-align: center;
+    font-size: 18px;
+    margin: 40px 0 0;
+    @media (max-width: 575px) {
+      margin: 20px 0 0;
+    }
+  }
+}

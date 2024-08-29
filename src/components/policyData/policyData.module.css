@@ -1,0 +1,29 @@
+.privacyPolicySection {
+  /* color: black; */
+  padding: 4rem;
+}
+
+.title {
+  font-size: 25px;
+  font-weight: 400;
+  font-family: "made_mirage_bold";
+  margin: 3rem 0 0 0;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.625;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .privacyPolicySection {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .privacyPolicySection {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,92 @@
+.corporateRecognitionWrapper {
+  padding: 50px;
+
+  @media (max-width : 575px) {
+    padding: 50px 30px;
+  }
+
+  .corporateRecognitionHeader {
+    font-size: 35px;
+    // padding: 30px 0;
+    //   text-align: center;
+  }
+
+  .corporateRecognitionCardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+
+    .corporateRecognitionCardInner {
+      max-width: max-content;
+      border: 1px solid #dfdee3;
+      background-color: white;
+
+      .corporateRecognitionCardImage {
+        padding: 1rem 3rem;
+
+        .corporateRecognitionCardImageInner {
+          max-width: 100%;
+          display: block;
+          height: auto;
+        }
+      }
+    }
+
+    .corporateRecognitionCardDescription {
+      text-align: center;
+      font-size: 18px;
+    }
+  }
+}
+
+.corporateRecognitionHeaderOuter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.corporateSwiperArrowContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 0 0;
+
+  @media (max-width : 475px) {
+    gap: 0px;
+  }
+}
+
+.recognition-custom-prev,
+.recognition-custom-next {
+  @media only screen and (min-width: 1200px) {
+    display: none;
+  }
+
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  padding: 10px;
+  position: relative;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 100%;
+}
+
+.swiper-button-prev {
+  &::after {
+    content: "";
+    font-family: "made_mirage_regular";
+  }
+}
+
+.swiper-button-next {
+  &::after {
+    content: "";
+    font-family: "made_mirage_regular";
+  }
+}

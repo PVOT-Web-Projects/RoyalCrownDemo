@@ -1,0 +1,634 @@
+@import "../../app/variables.scss";
+@import "../../fonts/fonts.scss";
+
+.ProductInfoSliderMain {
+  .shadow_heading {
+    .wrapper {
+      position: static;
+      width: 100%;
+      text-align: center;
+
+      .shadow_heading_text {
+        @media (max-width: 500px) {
+          font-size: 35px !important;
+          padding-left: 5px !important;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    .shadow_heading .wrapper .shadow_heading_text.normal {
+      top: 0px !important;
+    }
+  }
+
+  .MainContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-left: 100px;
+    justify-content: space-evenly;
+    // overflow: hidden;
+    padding-top: 6rem;
+
+    @media (min-width: 1500px) {
+      padding-right: 5rem;
+      padding-left: 12rem;
+    }
+
+    @media (max-width: 1199px) {
+      padding-left: 95px;
+    }
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      padding-left: 0px;
+    }
+
+    @media (max-width: 575px) {
+      padding-top: 1rem;
+    }
+
+    .abc {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+
+      //   width: 50%;
+      &.left {
+        width: 70%;
+        margin-right: 50px;
+
+        @media (max-width: 767px) {
+          width: 95%;
+        }
+      }
+
+      &.right {
+        width: 30%;
+
+        // padding: 0 20px;
+        @media (max-width: 767px) {
+          padding: 0 20px;
+          width: 95%;
+          margin: 40px 0 0;
+        }
+
+        @media (max-width: 425px) {
+          padding: 0 0 0 10px;
+        }
+
+        @media (max-width: 375px) {
+          padding: 0 0 0 8px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        width: 100%;
+      }
+
+      .LogoImg {
+        position: absolute;
+        top: 46%;
+        left: 80%;
+
+        @media (max-width: 1440px) {
+          left: 70%;
+        }
+
+        @media (max-width: 1199px) {
+          left: 64%;
+        }
+
+        @media (max-width: 768px) {
+          left: 70%;
+        }
+      }
+
+      .Rc_Text_Main {
+        padding-bottom: 2rem;
+
+        .Rc_Text_MainInner {
+          color: #595959;
+          font-size: 20px;
+        }
+      }
+
+      .tenExp {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        @media (max-width: 768px) {
+          margin: 0 auto;
+        }
+
+        @media (max-width: 375px) {
+          margin-bottom: 0px;
+        }
+
+        .ProductInfoText {
+          margin-top: 15px;
+
+          .ProductInfoTextInner {
+            font-size: 16px;
+            color: $white;
+
+            span {
+              color: $white;
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .Carousel_Slider_container {
+    width: 100%;
+    margin-right: 50px;
+
+    .mySwiper {
+      //   text-align: center;
+      //   margin: 0 auto;
+
+      // .third_section_image1 {
+      //   max-width: 100%;
+      //   display: block;
+      //   height: auto;
+      //   @media(max-width: 1440px){
+      //     height: 80vh !important;
+      //   }
+      // }
+    }
+  }
+
+  .Carousel_Slider_container2 {
+    width: 100%;
+
+    @media (max-width: 1600px) {
+      width: 100%;
+    }
+
+    .mySwiper2 {
+      //   text-align: center;
+      //   margin: 0 auto;
+    }
+  }
+
+  //   .swiper-slide {
+  //     text-align: center;
+  //   }
+
+  .third_section_content {
+    text-align: center;
+    position: relative;
+
+    .third_section_image1 {
+      max-width: 100%;
+      height: auto;
+      display: block;
+
+      @media (max-width: 1440px) {
+        height: 83vh;
+      }
+
+      @media (max-width: 1024px) {
+        height: 79vh;
+      }
+
+      @media (max-width: 768px) {
+        height: auto;
+        margin: 0 auto;
+      }
+    }
+
+    .third_section_overlay_text {
+      color: black;
+      text-align: center;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-transform: uppercase;
+
+      .third_section_overlay_span {
+        color: #fff;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .swiper2,
+  .swiper3 {
+    // display: flex;
+    // gap: 2rem;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 5%;
+    color: $white;
+    font-weight: 900;
+    border: 1px solid $white;
+    padding: 15px 15px;
+
+    @media (max-width: 575px) {
+      padding: 5px 10px;
+    }
+
+    @media (max-width: 425px) {
+      padding: 0px 4px;
+    }
+  }
+
+  .swiper-button-next {
+    left: 93%;
+    top: 5%;
+
+    @media (min-width: 1500px) {
+      left: 95%;
+    }
+
+    @media (max-width: 1199px) {
+      left: 88%;
+    }
+
+    @media (max-width: 767px) {
+      left: auto;
+      right: 40px;
+    }
+
+    @media (max-width: 665px) {
+      top: 25%;
+    }
+
+    @media (max-width: 575px) {
+      left: auto;
+      right: 20px;
+      top: 26%;
+    }
+
+    @media (max-width: 375px) {
+      right: 0px;
+      top: 28%;
+    }
+
+    @media (max-width: 365px) {
+      top: 27.8%;
+    }
+  }
+
+  .swiper-button-prev {
+    left: 83%;
+
+    @media (min-width: 1500px) {
+      left: 85%;
+    }
+
+    // @media(max-width: 1400px){
+    //   left: 75%;
+    // }
+    @media (max-width: 1199px) {
+      left: 75%;
+    }
+
+    @media (max-width: 767px) {
+      left: auto;
+      right: 130px;
+    }
+
+    @media (max-width: 665px) {
+      top: 25%;
+    }
+
+    @media (max-width: 575px) {
+      left: auto;
+      right: 100px;
+      top: 26%;
+    }
+
+    @media (max-width: 375px) {
+      right: 50px;
+      top: 28%;
+    }
+
+    @media (max-width: 365px) {
+      top: 27.8%;
+    }
+  }
+
+  .swiper-button-next:after {
+    @media (max-width: 575px) {
+      font-size: 25px;
+    }
+
+    @media (max-width: 425px) {
+      font-size: 20px !important;
+    }
+  }
+
+  .swiper-button-prev:after {
+    @media (max-width: 575px) {
+      font-size: 25px;
+    }
+
+    @media (max-width: 425px) {
+      font-size: 20px !important;
+    }
+  }
+
+  .Carousel_text_maincontent {
+    // position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-left: 35px;
+
+    // text-align: left;
+    @media (max-width: 767px) {
+      margin: 0 0 40px;
+    }
+
+    @media (max-width: 575px) {
+      padding-left: 25px;
+    }
+
+    .FirstSSliderText {
+      .Text_InnerText {
+        color: $white;
+        font-size: 45px;
+        font-weight: 600;
+        text-align: left;
+        padding-bottom: 1rem;
+
+        @media (max-width: 1018px) {
+          width: 70%;
+        }
+
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+
+        @media (max-width: 575px) {
+          font-size: 35px;
+        }
+
+        @media (max-width: 475px) {
+          font-size: 29px;
+        }
+      }
+
+      .TextInner1 {
+        font-size: 30px;
+        padding-bottom: 1rem;
+      }
+
+      .TextButtonoUTER {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @media (max-width: 670px) {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .yello_btn {
+          @media(max-width: 768px) {
+            padding: 0 1rem;
+          }
+        }
+
+        .submit_btn {
+          margin: 0 0 20px;
+
+          .yello_btn {
+            position: relative;
+            overflow: hidden;
+            height: 3rem;
+            padding: 0 2rem;
+            background-color: transparent;
+            border: 1px solid $black;
+            text-transform: uppercase;
+            background-size: 400%;
+            color: $white;
+            font-size: 18px;
+            line-height: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            width: fit-content;
+
+            @media (max-width : 385px) {
+              padding: 0 10px;
+            }
+
+            .button-content {
+              font-size: 25px;
+              font-weight: 550;
+              position: relative;
+              z-index: 1;
+              transition: color 0.475s;
+              
+
+              @media (max-width : 475px) {
+                font-size: 21px;
+              }
+            }
+
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              transform: scaleX(0);
+              transform-origin: 0 50%;
+              width: 100%;
+              height: inherit;
+              // border-radius: inherit;
+              border: none;
+              background-color: #D4A373;
+              ;
+              transition: all 0.475s;
+            }
+
+            &:hover {
+              .button-content {
+                color: white;
+              }
+
+              &::before {
+                background-color: #D4A373;
+                transform: scaleX(1);
+              }
+            }
+          }
+        }
+      }
+
+      .TextInnerCollection {
+        font-size: 20px;
+        opacity: 0.7;
+
+        @media (max-width: 670px) {
+          font-size: 16px;
+          padding-bottom: 20px;
+        }
+      }
+    }
+
+    .SecondSliderText {
+      margin-top: 40px;
+
+      .ProductCategoryText {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid;
+      }
+
+      .ProductCategoryText1 {
+        font-size: 22px;
+        text-transform: uppercase;
+        font-weight: normal;
+
+        @media (max-width: 1024px) {
+          font-size: 20px;
+        }
+
+        @media (max-width: 575px) {
+          font-size: 16px;
+        }
+      }
+
+      .ProductCategoryText2 {
+        font-size: 22px;
+        font-weight: normal;
+
+        @media (max-width: 1024px) {
+          font-size: 20px;
+        }
+
+        @media (max-width: 575px) {
+          font-size: 16px;
+          flex-wrap: wrap;
+        }
+      }
+    }
+
+    .carousel_text_Content {
+      color: white;
+      text-align: left;
+      font-size: 28px;
+      width: 88%;
+      font-style: normal;
+      font-weight: normal;
+      line-height: normal;
+      text-transform: capitalize;
+
+      @media (max-width: 1199px) {
+        width: 90%;
+      }
+
+      @media (max-width: 767px) {
+        font-size: 22px;
+      }
+    }
+  }
+
+  .productMainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // overflow-x: hidden;
+    // padding: 0px 0 100px 0;
+
+    @media (min-width : 991px) and (max-width : 1900px) {
+      overflow-x: hidden;
+    }
+  }
+
+  .productMain {
+    position: relative;
+    /* Add this to ensure positioning of the border element */
+
+    .productHeader {
+      text-align: center;
+      font-size: 80px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+
+      .productHeaderInner {
+        font-family: "made_mirage_thin";
+      }
+
+      @media (max-width: 575px) {
+        font-size: 50px;
+      }
+    }
+
+    .productNumber {
+      text-align: right;
+      font-size: 350px;
+      opacity: 50%;
+      /* font-family: "made_mirage_thin"; */
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 1px;
+      color: black;
+      margin-right: -80px;
+
+      @media (max-width: 991px) {
+        display: none;
+      }
+    }
+
+    .productDescription {
+      padding: 0 80px;
+      width: 50%;
+      transform: translate(10px, -200px);
+      position: relative;
+      /* Ensure relative positioning for the border */
+
+      @media (max-width: 991px) {
+        width: 100%;
+        padding: 0px;
+        transform: translate(0px, 10px);
+      }
+
+      .productDescriptionBorder {
+        position: absolute;
+        top: -10px;
+        left: 0;
+        width: 0%;
+        /* Start with width of 0% */
+        height: 1px;
+        background-color: #5B3524;
+        z-index: -1;
+        /* Ensure it is behind other content */
+      }
+
+      .productDescriptionHeader {
+        font-size: 25px;
+        text-transform: uppercase;
+
+        @media (max-width: 991px) {
+          padding: 20px;
+        }
+      }
+
+      .productDescriptionContent {
+        padding-top: 20px;
+        font-size: 21px;
+
+        @media (max-width: 991px) {
+          padding: 0 20px;
+        }
+      }
+    }
+  }
+}

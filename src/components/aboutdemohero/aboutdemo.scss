@@ -1,0 +1,48 @@
+.AboutusContainer {
+  .AbousUsSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    .AbousUsTextContainerOuter {
+      position: absolute;
+      .AbousUsTextContainer {
+        text-align: center;
+        margin: 0 auto;
+        p {
+          margin: 0 auto;
+          text-align: center;
+          // width: 80%;
+          font-size: 100px;
+          // font-weight: 900;
+          // font-family: "made_mirage_bold";
+        }
+      }
+      .AbousUsTextImage {
+        position: absolute;
+        top: 20%;
+        left: 75%;
+        z-index: -1;
+      }
+      .AbousUsTextImage1 {
+        position: absolute;
+        // top: -34%;
+        left: 20%;
+        z-index: -1;
+      }
+      .AbousUsTextImage2 {
+        position: absolute;
+        top: -15%;
+        left: 30%;
+        z-index: -1;
+      }
+      .AbousUsTextImage3 {
+        position: absolute;
+        top: -65%;
+        left: 5%;
+        z-index: -1;
+      }
+    }
+  }
+}

@@ -1,0 +1,129 @@
+.BlogsInner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // Always display 3 columns
+  gap: 20px;
+  // padding: 0 50px;
+  padding: 0px 50px 80px;
+  position: relative;
+  @media (max-width: 575px) {
+    padding: 0px 25px 0px;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 94%;
+    height: 100%;
+    // padding-top: 2rem;
+    // background-color: white;
+    border-bottom: 2px solid #5b3524;
+    @media (max-width: 1199px) {
+      width: 90%;
+    }
+    @media (max-width: 768px) {
+      width: 86%;
+    }
+    @media (max-width: 765px) {
+      width: 0%;
+    }
+  }
+  @media (max-width: 1199px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; // Change to single column layout on smaller screens
+  }
+}
+.SearchMainContainer {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0px 50px 20px;
+  align-items: center;
+  gap: 1.5rem;
+  @media(max-width: 425px){
+    flex-direction: column;
+    padding: 10px 25px;
+    justify-content: left;
+    align-items: flex-start;
+  }
+
+  .inputContainer {
+    position: relative;
+    // width: 480px;
+    @media(max-width: 425px){
+      width: 100%;
+    }
+  }
+
+  .searchIcon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .input {
+    // max-width: 100%;
+    width: 450px;
+    background-color: transparent;
+    // color: white;
+    font-size: 20px;
+    padding: 0.15rem 0.5rem 0.15rem 3rem;
+    min-height: 45px;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #5B3524;
+    @media(max-width: 768px){
+      width: 100%;
+    }
+
+    /* Hide default clear button */
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+    }
+  }
+
+  .close-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5B3524;
+    width: 20px;
+    height: 20px;
+  }
+
+  .close-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+.css-4bhcql-MuiStack-root {
+  align-items: center !important;
+  padding: 100px 0 !important;
+  @media (max-width: 768px) {
+    padding: 50px 0 100px !important;
+  }
+  @media (max-width: 575px) {
+    padding: 0px 0 100px !important;
+  }
+}
+.css-wjh20t-MuiPagination-ul {
+  justify-content: center !important;
+  padding: 3rem 0 !important;
+}
+.css-nhb8h9 {
+  justify-content: center !important;
+  padding: 3rem 0 !important;
+}

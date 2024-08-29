@@ -1,0 +1,68 @@
+.socialPage {
+  // width: 100%;
+  // padding: 30px 0;
+  @media(max-width: 991px){
+    width: 100%;
+  }
+  @media screen and (max-width:768px) {
+    text-align: center;
+  }
+
+  .Footer_Logo {
+    padding-bottom: 1rem;
+  }
+
+  .SocialMediaMain {
+    display: flex;
+    justify-content: space-between;
+    // gap: 10px;
+    padding-top: 1rem;
+    @media screen and (max-width:768px) {
+        justify-content: center;
+        gap: 1rem;
+      }
+  }
+
+  .SocialIcons {
+    border-radius: 50%;
+    width: 50px;
+    height: 100%;
+    padding: 15px 0;
+    // background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width:575px) {
+      padding: 8px 0;
+    }
+}
+
+  .ImageIconSvg {
+    width: 100%;
+    height: auto;
+  }
+  a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .FooterImg{
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 28px;
+    padding-left: 4px;
+  }
+  .SocialImg{
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+    // max-width: 100%;
+    // height: auto;
+    @media(max-width: 768px){
+      max-width: 100%;
+      height: auto;
+      // height: revert-layer;
+    }
+  }
+}

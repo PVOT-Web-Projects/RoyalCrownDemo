@@ -1,0 +1,18 @@
+.nav_image {
+  display: none;
+}
+.nav_image img {
+  max-width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .nav_image {
+    display: block;
+    width: 500px;
+    height: 450px;
+    position: relative;
+  }
+  img {
+    object-fit: cover;
+  }
+}

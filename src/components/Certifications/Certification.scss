@@ -1,0 +1,38 @@
+.certification_main {
+  // color: white;
+  .certification_heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5B3524;
+    font-size: 64px;
+    font-weight: 400;
+    // line-height: 57.6px;
+    // letter-spacing: 2px;
+    @media (max-width: 991px) {
+      font-size: 50px;
+    }
+    @media (max-width: 575px) {
+      font-size: 42px;
+      // letter-spacing: 0px;
+    }
+    @media(max-width: 375px){
+      margin-top: 90px;
+      font-size: 35px;
+    }
+  }
+  .certificate_marqee {
+    padding: 50px 0px;
+    .logocertificate {
+      margin: 1rem;
+      @media (max-width: 767px) {
+        width: 135px;
+        height: 135px;
+      }
+      @media (max-width: 575px) {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+}

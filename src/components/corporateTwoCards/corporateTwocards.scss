@@ -1,0 +1,86 @@
+.corporateCardsWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px 200px;
+
+    @media (max-width : 1300px) {
+        padding:50px 150px;
+    }
+
+    @media (max-width : 1150px) {
+        padding: 50px 100px;
+    }
+
+    @media (max-width : 991px) {
+        padding: 50px 50px;
+    }
+
+    @media (max-width : 475px) {
+        padding: 30px 30px;
+    }
+    .corporateCardsContainer{
+        display: flex;
+        justify-content: center;
+        gap: 5rem;
+
+        @media (max-width : 991px) {
+            flex-direction: column;
+        }
+
+        @media (max-width : 768px) {
+            gap: 2rem;
+        }
+        .corporateCardsImage{
+            width: 50%;
+
+            @media (max-width : 991px) {
+                width: 100%;
+            }
+        }
+
+        .corporateCardsImageInner{
+            max-width: 100%;
+            display: block;
+            height: 100%;
+            margin: 0 auto;
+            object-fit: cover;
+            @media(max-width: 768px){
+                height: auto;
+            }
+        }
+
+        .corporateCardDescription{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+            width: 50%;  
+            letter-spacing: 2px;
+
+            @media (max-width : 991px) {
+                width: 100%;    
+            }
+            
+            .coporateCardHeader{
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 21px;
+            }
+
+            .coporateCardHeader2{
+                font-size: 25px;
+            }
+            .CsrBorder{
+                padding: 20px 0 10px;
+                border-bottom: 1px solid #5b3524;
+                .CsrBorderOne{
+                    font-size: 22px;
+                    padding: 10px 0;
+                }
+            }
+        }
+    }
+
+}

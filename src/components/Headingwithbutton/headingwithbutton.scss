@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10rem 5rem 5rem 8rem;
+  @media(max-width: 1199px){
+    padding: 10rem 5rem 5rem 5rem;
+  }
+  @media (max-width: 991px) {
+    padding: 4rem 3rem;
+  }
+  .yello_btn{
+    padding: 0 4rem;
+  }
+
+  @media (max-width: 576px) {
+    padding: 2rem;
+  }
+  .heading1 {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    font-size: 100px;
+    font-family: "made_mirage_thin";
+    font-weight: 250;
+    line-height: 1.2;
+    width: 60%;
+    margin: 0 auto;
+    text-transform: uppercase;
+    @media(min-width: 1500px){
+      width: 70%;
+    }
+    @media (max-width: 1350px) {
+      font-size: 4rem;
+    }
+    @media (max-width: 1200px) {
+      font-size: 3rem;
+    }
+    @media (max-width: 992px) {
+      font-size: 3rem;
+      width: 70%;
+    }
+    @media (max-width: 768px) {
+      font-size: 2rem;
+      width: 80%;
+    }
+    @media (max-width: 576px) {
+      font-size: 1.5rem;
+      width: 100%;
+    }
+    .subheading {
+      color: #ffbc37;
+    }
+  }
+
+  .buttonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+    .button {
+      padding: 20px 60px;
+      font-size: 1rem;
+      background: grey;
+      color: #ffbc37;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      @media (max-width: 1199px) {
+        padding: 15px 40px;
+      }
+      @media (max-width: 991px) {
+        padding: 13px 22px;
+      }
+      &:hover {
+        color: white;
+        background-color: #ffbc37;
+      }
+    }
+  }
+}

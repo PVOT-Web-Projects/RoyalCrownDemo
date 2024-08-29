@@ -1,0 +1,140 @@
+.form {
+  // background-color: #1c211e;
+  padding: 0 50px;
+  // margin: auto;
+  color: #fff;
+  @media screen and (max-width:575px) {
+    padding: 0px;
+  }
+  .yello_btn{
+    border: 1px solid white;
+    color: white;
+  }
+}
+
+.form_header {
+  text-align: left;
+  margin-bottom: 50px;
+  font-size: 50px;
+  width: 78%;
+
+  @media (max-width : 575px) {
+    font-size: 32px;
+    width: 100%;
+  }
+}
+
+.form_field_flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+  margin-bottom: 20px;
+  @media screen and (max-width:575px) {
+    flex-direction: column;
+    gap: 0rem;
+    margin-bottom: 0px;
+  }
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #fff !important;
+}
+.form_content {
+  flex: 1;
+}
+
+.input-container {
+  position: relative;
+  margin: 10px 0;
+  width: 100%;
+  height: 85px;
+  @media screen and (max-width:575px) {
+    height: 65px;
+  }
+}
+
+.input-container input[type="text"],
+.input-container input[type="email"],
+.input-container textarea {
+  font-size: 18px;
+  width: 100%;
+  border: none;
+  color: white;
+  border-bottom: 1px solid white;
+  padding: 8px 0;
+  background-color: transparent;
+  outline: none;
+  resize: none;
+  @media screen and (max-width:575px) {
+    font-size: 16px;
+  }
+}
+
+.input-container .label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.input-container input[type="text"]:focus ~ .label,
+.input-container input[type="email"]:focus ~ .label,
+.input-container input[type="text"].not-empty ~ .label,
+.input-container input[type="email"].not-empty ~ .label,
+.input-container textarea:focus ~ .label,
+.input-container textarea.not-empty ~ .label {
+  top: -20px;
+  font-size: 13px;
+  color: #ccc;
+}
+
+.message_field {
+  height: 100px;
+  @media screen and (max-width:575px){
+    height: 70px;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  @media screen and (max-width:575px) {
+    margin:5px 0px;
+  }
+}
+.submit-button {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 4rem;
+  @media screen and (max-width:575px) {
+    padding-top: 3rem;
+  }
+  .submit_button {
+    background-color: transparent;
+    color: #fff;
+    padding: 15px 50px;
+    border: 1px solid white;
+    font-size: 17px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #555;
+    }
+  }
+}
+.form_footer{
+  margin: 30px 0px;
+  font-size: 21px;
+  width: 60%;
+
+  @media (max-width : 768px) {
+    width: 100%;
+  }
+}

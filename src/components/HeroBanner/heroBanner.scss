@@ -1,0 +1,91 @@
+@import "../../app/variables.scss";
+
+.hero_banner {
+  .banner_image {
+    height: 100vh;
+    position: relative;
+    img {
+      max-width: 100%;
+      width: 100%;
+      height: 100%;
+      // object-fit: cover;
+      display: block;
+      @media(max-width: 768px){
+        object-fit: cover;
+      }
+    }
+    .banner_text {
+      position: absolute;
+      bottom: 57px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      // width: 425px;
+      width: 95%;
+      padding: 0 20px;
+      @media(min-width: 1600px){
+          bottom: 95px;
+      }
+      @media(max-width:1600px){
+        bottom: 85px;
+      }
+
+      @media (max-width: 575px) {
+        width: 90%;
+      }
+      .text_effect {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        .card {
+          margin: 0;
+          overflow: hidden;
+
+          h2 {
+            font-family: "made_mirage_thin";
+            font-size: 80px;
+            font-weight: 250;
+            margin: 0 0 16px;
+            // line-height: 70px;
+            
+            @media(max-width:1600px){
+              font-size: 80px;
+              // line-height: 60px;
+            }
+            @media (max-width: 575px) {
+              font-size: $font55;
+            }
+            @media(max-width: 375px){
+              font-size: 47px;
+            }
+          }
+        }
+      }
+      p {
+        font-size: 24px;
+        font-weight: $weightRegular;
+        line-height: 31px;
+        margin: 0 0 40px;
+        @media(max-width:1600px){
+          margin: 0 0 20px;
+        }
+      }
+      .link {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        a {
+          text-decoration: none;
+          color: $black;
+          background-color: #FEFAE0;
+          display: block;
+          padding: 44px 25px;
+          border-radius: 50%;
+          transition: all 0.4s;
+          &:hover {
+            background-color: #FEFAE0;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
