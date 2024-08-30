@@ -1,0 +1,124 @@
+/* .popupFix {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000085;
+  z-index: 9999999;
+} */
+/* .popupFix {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 9999999;
+} */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
+  border-radius: 10px;
+  padding: 40px;
+  z-index: 999;
+  width: 90%;
+  height: 80vh;
+}
+.popup_wrapper {
+  display: flex;
+  align-items: center;
+}
+/* .image {
+  width: 40%;
+}
+.image img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+} */
+.content {
+  /* padding-left: 40px; */
+  text-align: center;
+  width: 100%;
+}
+.content .ContentInner {
+  font-size: 45px;
+  font-weight: 900;
+  font-family: "made_mirage_thin";
+  text-align: center;
+  margin: 0 auto;
+}
+.content p {
+  /* margin: 0 0 30px; */
+  width: 50%;
+  font-weight: 900;
+  font-family: "made_mirage_thin";
+  margin: 0 auto;
+  text-align: center;
+  font-size: 20px;
+}
+
+.close {
+  position: relative;
+}
+.close img {
+  cursor: pointer;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+}
+@media (max-width: 1199px) {
+  .popup {
+    width: 70%;
+  }
+}
+@media (max-width: 767px) {
+  .popup_wrapper {
+    flex-direction: column;
+  }
+  .image {
+    width: 100%;
+    margin: 0 0 15px;
+  }
+  .image img {
+    width: 100%;
+  }
+  .content {
+    padding-left: 0;
+    width: 100%;
+  }
+  .close img {
+    cursor: pointer;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 30px;
+    height: 30px;
+  }
+}
+@media (max-width: 575px) {
+  .popup {
+    width: 90%;
+    padding: 40px 20px 20px;
+  }
+  .close img {
+    right: -20px;
+  }
+  .image img {
+    height: 300px;
+  }
+  .content p {
+    font-size: 16px;
+  }
+  .content h2 {
+    font-size: 32px;
+    margin: 0 0 10px;
+  }
+}

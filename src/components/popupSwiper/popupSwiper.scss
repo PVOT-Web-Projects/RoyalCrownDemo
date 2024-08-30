@@ -1,0 +1,143 @@
+.PopupSwiperWrapper {
+    padding: 50px 50px 0px 50px;
+  
+    @media (max-width: 575px) {
+      padding: 50px 50px 0px 20px;
+    }
+  
+    @media (min-width: 1600px) {
+      padding: 50px 100px 0px 100px;
+    }
+  
+    .PopupSwiperContainer {
+      .PopupSwiperHeaderContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 0;
+  
+        .swiperHeader {
+          font-size: 35px;
+
+          @media (max-width : 575px) {
+            font-size: 30px;
+          }
+
+          @media (max-width : 475px) {
+            font-size: 25px;
+          }
+        }
+  
+        .PopupSwiperArrowContainer {
+          display: flex;
+          gap: 70px;  
+          align-items: center;
+          justify-content: center;
+          margin: 10px 0 0 0;
+
+          @media (max-width : 475px) {
+            gap: 0px;
+          }
+        }
+        
+        .swiper-button-prev,
+        .swiper-button-next {
+          padding: 10px;
+          position: relative;
+          border-radius: 50%;
+          cursor: pointer;
+          width: 100%;
+        }
+  
+        .swiper-button-prev {
+          /* Position the left arrow */
+        //   top: 50%;
+
+        &::after{
+          content: "";
+          font-family: "made_mirage_regular";
+        }
+        }
+  
+        .swiper-button-next {
+          /* Position the right arrow */
+        //   top: 50%;
+        &::after{
+          content: "";
+          font-family: "made_mirage_regular";
+        }
+        }
+      }
+  
+      .PopupSwiperCardOuter {
+        color: white;
+  
+        .PopupSwiperCardWrapper {
+          position: relative;
+  
+          .PopupSwiperCardInner {
+            overflow: hidden;
+            border-radius: 10px;
+  
+            .PopupImage {
+              cursor: pointer;
+              height: auto;
+              display: block;
+              max-width: 100%;
+              // filter: brightness(0.35);
+              border-radius: 10px;
+              transition: all 0.9s ease-in-out;
+
+              @media (max-width : 675px) {
+                margin-left: -15px;
+              }
+  
+              // &:hover {
+              //   transform: scale(1.2);
+              // }
+            }
+          }
+  
+          .PopupSwiperContent {
+            position: absolute;
+            bottom: 50px;
+            left: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+  
+            .PopupswiperCardHeaderInner {
+              font-family: "made_mirage_bold";
+              font-size: 35px;
+  
+              @media (max-width: 768px) {
+                font-size: 30px;
+              }
+            }
+  
+           
+          }
+        }
+        .PopupswiperCardDescriptionInner {
+          padding-top: 1rem;
+          font-size: 21px;
+          width: 100%;
+          text-align: center;
+          color: #5b3524;
+
+          @media (max-width: 991px) {
+            width: 100%;
+          }
+
+          @media (max-width: 768px) {
+            font-size: 18px;
+          }
+
+          @media (max-width : 675px) {
+            width: 90%;
+          }
+        }
+      }
+    }
+  }
+  

@@ -65,6 +65,7 @@
   padding: 10px 20px;
   position: absolute;
   text-align: center;
+  right: 2rem;
   text-decoration: none;
   text-rendering: geometricprecision;
   transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1),
@@ -91,6 +92,99 @@
   transition: clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
     -webkit-clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   width: 100%;
+}
+.buttonXInner{
+  appearance: none;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-sizing: border-box;
+  color: #5B3524;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1em;
+  margin: 0;
+  opacity: 1;
+  padding: 15px 18px;
+  outline: 0;
+  /* padding: 10px 20px; */
+  position: absolute;
+  text-align: center;
+  right: 0rem;
+ bottom: 43rem;
+  text-decoration: none;
+  text-rendering: geometricprecision;
+  transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1),
+    background-color 100ms cubic-bezier(0.694, 0, 0.335, 1),
+    color 100ms cubic-bezier(0.694, 0, 0.335, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+.buttonXInner:before {
+  animation: opacityFallbackOut 0.5s step-end forwards;
+  backface-visibility: hidden;
+  background-color: #ffffff;
+  clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translateZ(0);
+  transition: clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+    -webkit-clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: 100%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: flex; /* Changed to flex to easily center content */
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* .buttonX:hover:before {
@@ -185,6 +279,12 @@
   color: #ffffff;
   left: 6rem;
   bottom: -518rem;
+}
+.ModalPopupOuter{
+  position: relative;
+}
+.footerPopup{
+  position: absolute;
 }
 .text1 {
   position: absolute;
