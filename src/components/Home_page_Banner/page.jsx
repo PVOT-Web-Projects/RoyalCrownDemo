@@ -8,14 +8,16 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import styles from "@/components/Home_page_Banner/Banner.module.css";
 import "./scroll.css";
+import Link from "next/link";
 import Popup from "@/components/Popup/page";
 // import Image from "next/image";
 // import Img1 from "@/images/livingroom.svg"
 gsap.registerPlugin(ScrollTrigger);
 
-const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
+const Animation = ({ loadImage, counter }) => {
   const [info, setInfo] = useState(false);
-  const [animationEnded, setAnimationEnded] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
+  // const [animationEnded, setAnimationEnded] = useState(false);
   const sectionRef = useRef(null);
   const canvasRef = useRef(null);
   const textRef = useRef(null);
@@ -27,8 +29,8 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [popup, setPopup] = useState(false);
-  const [frameLink, setFrameLink] = useState(imageBaseUrl); // Initialize with default value
-  const [frameCount, setFrameCount] = useState(initialFrameCount); // Initialize with default value
+  const [frameCount, setFrameCount] = useState(0);
+  const [imageBaseUrl, setImageBaseUrl] = useState("");
   const handlePopup = () => {
     setPopup(true);
   };
@@ -36,39 +38,101 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
     setPopup(false);
   };
   console.log(loadingCounter);
-
- 
-
-  // Define the click handler
-  const handleTextXClick = (newLink, newCount) => {
-    setFrameLink(newLink);
-    setFrameCount(newCount);
-    console.log(`New link: ${newLink}, New frame count: ${newCount}`);
+  // Define frame counts and base URLs for each tab
+  const tabs = [
+    {
+      frameCount: 290,
+      imageBaseUrl:
+        "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/",
+    },
+    {
+      frameCount: 250,
+      imageBaseUrl:
+        "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/",
+    },
+    {
+      frameCount: 300,
+      imageBaseUrl:
+        "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/",
+    },
+  ];
+  useEffect(() => {
+    const defaultTabIndex = 0; // Set default tab index
+    setActiveTab(defaultTabIndex);
+    setFrameCount(tabs[defaultTabIndex].frameCount);
+    setImageBaseUrl(tabs[defaultTabIndex].imageBaseUrl);
+    loadImages(tabs[defaultTabIndex].frameCount, tabs[defaultTabIndex].imageBaseUrl);
+  }, []);
+  const handleTabChange = (index) => {
+    console.log(`Tab clicked: ${index}`); // Log the clicked tab index
+    setActiveTab(index);
+    setFrameCount(tabs[index].frameCount);
+    setImageBaseUrl(tabs[index].imageBaseUrl);
+    imagesRef.current = []; // Clear previous images
+    setLoading(true); // Reset loading state
+    // Reset the frame to 0 for the new tab
+  airpodsRef.current.frame = 0; // Reset frame to the first frame
+  loadImages(tabs[index].frameCount, tabs[index].imageBaseUrl); // Load images for the new tab
   };
-
-  // useEffect(() => {
-  //   const lenis = new Lenis({
-  //     lerp: 0.11, // Increase for more smoothness (0 - 1)
-  //     smooth: true, // Ensure smooth scrolling is enabled
-  //     direction: 'vertical', // Scrolling direction, use 'horizontal' for horizontal scroll
-  //     gestureDirection: 'vertical', // Direction for touch gestures
-  //     mouseMultiplier: 1, // Adjust how sensitive the scroll reacts to the mouse
-  //     smoothTouch: true, // Enable smooth scroll for touch devices
-  //     touchMultiplier: 2, // Increase this value for a smoother effect on touch devices
-  //   });
-
-  //   // RAF (Request Animation Frame) loop for Lenis
-  //   function raf(time) {
-  //     lenis.raf(time);
-  //     requestAnimationFrame(raf);
+  // const loadImages = async (frameCount, baseUrl) => {
+  //   const imgUrls = Array.from(
+  //     { length: frameCount },
+  //     (_, i) => `${baseUrl}${(i + 1).toString().padStart(4, "0")}.webp`
+  //   );
+  //   try {
+  //     await Promise.all(
+  //       imgUrls.map(
+  //         (url, index) =>
+  //           new Promise((resolve) => {
+  //             const img = new Image();
+  //             img.src = url;
+  //             img.onload = () => {
+  //               imagesRef.current.push(img);
+  //               setLoadingCounter(index + 1);
+  //               resolve();
+  //             };
+  //             img.onerror = () => {
+  //               console.error(`Error loading image: ${url}`);
+  //               resolve(); // Resolve even on error to continue loading others
+  //             };
+  //           })
+  //       )
+  //     );
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.error("Error loading images:", error);
   //   }
+  // };
 
-  //   requestAnimationFrame(raf);
-
-  //   return () => {
-  //     lenis.destroy(); // Clean up Lenis instance on unmount
-  //   };
-  // }, []);
+  const loadImages = async (frameCount, baseUrl) => {
+    const imgUrls = Array.from(
+      { length: frameCount },
+      (_, i) => `${baseUrl}${(i + 1).toString().padStart(4, "0")}.webp`
+    );
+    setLoading(true); // Set loading to true immediately
+    
+    const promises = imgUrls.map((url) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = () => {
+          imagesRef.current.push(img);
+          resolve();
+        };
+        img.onerror = () => {
+          console.error(`Error loading image: ${url}`);
+          resolve(); // Resolve to allow other images to load
+        };
+      });
+    });
+  
+    await Promise.all(promises);
+    // Reset to the first frame once images are loaded
+  airpodsRef.current.frame = 0; 
+  render(); // Call render to display the first image
+    setLoading(false);
+  };
+  
   useEffect(() => {
     const section = sectionRef.current;
     const canvas = canvasRef.current;
@@ -98,44 +162,44 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
     setCanvasSize();
     window.addEventListener("resize", setCanvasSize);
     // https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/0001.webp
-    const frameCount = 290;
-    const currentFrame = (index) =>
-      `https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/${(
-        index + 1
-      )
-        .toString()
-        .padStart(4, "0")}.webp`;
+    // const frameCount = 290;
+    // const currentFrame = (index) =>
+    //   `https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/${(
+    //     index + 1
+    //   )
+    //     .toString()
+    //     .padStart(4, "0")}.webp`;
 
-    let imgL = [];
-    for (let i = 0; i < frameCount; i++) {
-      let img = new Image();
-      img.src = currentFrame(i);
-      imagesRef.current.push(img);
-      imgL.push(img.src);
-    }
+    // let imgL = [];
+    // for (let i = 0; i < frameCount; i++) {
+    //   let img = new Image();
+    //   img.src = currentFrame(i);
+    //   imagesRef.current.push(img);
+    //   imgL.push(img.src);
+    // }
 
-    const loadImages = async () => {
-      try {
-        const loadImagePromises = imgL.map((imageUrl, index) => {
-          return new Promise((resolve) => {
-            const img = new Image();
-            img.src = imageUrl;
-            img.onload = () => {
-              setLoadingCounter(index + 1);
-              resolve();
-            };
-          });
-        });
+    // const loadImages = async () => {
+    //   try {
+    //     const loadImagePromises = imgL.map((imageUrl, index) => {
+    //       return new Promise((resolve) => {
+    //         const img = new Image();
+    //         img.src = imageUrl;
+    //         img.onload = () => {
+    //           setLoadingCounter(index + 1);
+    //           resolve();
+    //         };
+    //       });
+    //     });
 
-        await Promise.all(loadImagePromises);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error loading images:", error);
-      }
-    };
-    loadImages();
-    console.log(imgL);
-    console.log("Counter", loadingCounter);
+    //     await Promise.all(loadImagePromises);
+    //     setLoading(false);
+    //   } catch (error) {
+    //     console.error("Error loading images:", error);
+    //   }
+    // };
+    // loadImages();
+    // console.log(imgL);
+    // console.log("Counter", loadingCounter);
 
     const animationTimeline = gsap.timeline({
       onUpdate: render,
@@ -155,7 +219,23 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
         },
       },
     });
-    imagesRef.current[0].onload = render;
+    // Check if there are images loaded before setting the onload
+    if (imagesRef.current.length > 0) {
+      imagesRef.current[0].onload = render;
+    }
+
+    function render() {
+      if (imagesRef.current[airpodsRef.current.frame]) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(
+          imagesRef.current[airpodsRef.current.frame],
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+      }
+    }
     // animationTimeline.to(airpodsRef.current, {
     //   frame: frameCount - 1,
     //   snap: "frame",
@@ -180,7 +260,7 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
       window.removeEventListener("resize", setCanvasSize);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [frameLink, frameCount, loadingCounter]);
+  }, [frameCount, loadingCounter]);
 
   console.log(loadImage(loading));
 
@@ -208,7 +288,7 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
     window.addEventListener("scroll", updateScrollPercentage);
 
     return () => window.removeEventListener("scroll", updateScrollPercentage);
-  }, []); 
+  }, []);
 
   const loadingProgress = (loadingCounter / 250) * 100;
   console.log(counter(loadingProgress));
@@ -220,26 +300,6 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
     });
     setIsVisible(false);
   };
-
-  //  code for video show and hide
-  // useEffect(() => {
-  //   // Function to handle scroll direction and video visibility
-  //   const handleScroll = () => {
-  //     const video = document.querySelector(`.${styles.videoBg}`);
-  //     if (window.scrollY > 0) {
-  //       // Check if window has scrolled down
-  //       video.style.visibility = "hidden";
-  //     } else {
-  //       video.style.visibility = "visible";
-  //     }
-  //   };
-
-  //   // Add scroll event listener
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -277,75 +337,9 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
             willChange: "transform", // Hint the browser for optimization
           }}
         ></canvas>
+         {/* {loading && <div className={styles.loadingPlaceholder}>Loading...</div>} */}
       </section>
-      {/* <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        transition={{ duration: 0.9 }}
-        className={styles.text1}
-      >
-        <HeadingTextAnimation
-          heading={"The"}
-          justifyContent={"center"}
-        />
-        <HeadingTextAnimation
-          heading={"Crown"}
-          justifyContent={"center"}
-        />
-         <HeadingTextAnimation
-          heading={"Experience"}
-          justifyContent={"center"}
-        />
-      </motion.div> */}
 
-      {/* <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        transition={{ duration: 0.9 }}
-        className={styles.interiormaata}
-      >
-        <HeadingTextAnimation
-          heading={"interior माता"}
-          justifyContent={"center"}
-        />
-      </motion.div> */}
-
-      {/* <div class="scroll-down-wrap no-border">
-        {isVisible && (
-          <div className="section-down-arrow" onClick={scrollDownByTenPercent}>
-            <svg
-              class="nectar-scroll-icon"
-              viewBox="0 0 30 45"
-              enableBackground="new 0 0 30 45"
-            >
-              <path
-                class="nectar-scroll-icon-path"
-                fill="none"
-                stroke="#ffffff"
-                strokeWidth="2"
-                strokeMiterlimit="10"
-                d="M15,1.118c12.352,0,13.967,12.88,13.967,12.88v18.76  c0,0-1.514,11.204-13.967,11.204S0.931,32.966,0.931,32.966V14.05C0.931,14.05,2.648,1.118,15,1.118z"
-              ></path>
-            </svg>
-            <div className="scroll">Scroll to explore</div>
-          </div>
-        )}
-      </div> */}
-
-      {/* <video
-        className={styles.videoBg}
-        width="750"
-        height="500"
-        autoPlay
-        loop
-        muted
-      >
-        <source src="./video/final_frame_video.mp4" type="video/mp4" />
-      </video> */}
-
-      {/* <MusicPlayer /> */}
       {scrollPercentage >= 10 && (
         <div className={styles.buttonOuter} ref={buttonRef}>
           <div>
@@ -380,114 +374,53 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
               }
               variants={buttonVariants}
             >
-              <div className={styles.textX} 
-              //  <DynamicSvg onClick={() => handleSvgClick('https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/new/', 300)} />
-              onClick={() => handleTextXClick('https://plywoodassets.royaletouche.com/assets/newframes/factorywalkdesktop/F008.webp', 290)}>
-                <svg
-                  width="48"
-                  height="60"
-                  viewBox="0 0 48 60"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16 59H32"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M24 59V38"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M23.9999 1C30.9609 1 34.4414 1 37.1636 2.61138C37.9527 3.07849 38.6824 3.63776 39.337 4.27717C41.5955 6.48283 42.47 9.82051 44.2191 16.4959L44.461 17.4194C46.8393 26.4947 48.0283 31.0323 45.8683 34.22C45.6532 34.5382 45.4162 34.8413 45.1596 35.1279C42.588 38 37.8565 38 28.3931 38H19.607C10.1435 38 5.41184 38 2.84017 35.1279C2.58367 34.8413 2.34691 34.5382 2.13151 34.22C-0.0282107 31.0323 1.16081 26.4947 3.5388 17.4194L3.7808 16.4959C5.52996 9.82051 6.40457 6.48283 8.6628 4.27717C9.31745 3.63776 10.0472 3.07849 10.8363 2.61138C11.3596 2.30163 11.9109 2.05143 12.5096 1.84932"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M40 38V45"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </div>
-              <div className={styles.textX}>
-                <svg
-                  width="48"
-                  height="60"
-                  viewBox="0 0 48 60"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16 59H32"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M24 59V38"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M23.9999 1C30.9609 1 34.4414 1 37.1636 2.61138C37.9527 3.07849 38.6824 3.63776 39.337 4.27717C41.5955 6.48283 42.47 9.82051 44.2191 16.4959L44.461 17.4194C46.8393 26.4947 48.0283 31.0323 45.8683 34.22C45.6532 34.5382 45.4162 34.8413 45.1596 35.1279C42.588 38 37.8565 38 28.3931 38H19.607C10.1435 38 5.41184 38 2.84017 35.1279C2.58367 34.8413 2.34691 34.5382 2.13151 34.22C-0.0282107 31.0323 1.16081 26.4947 3.5388 17.4194L3.7808 16.4959C5.52996 9.82051 6.40457 6.48283 8.6628 4.27717C9.31745 3.63776 10.0472 3.07849 10.8363 2.61138C11.3596 2.30163 11.9109 2.05143 12.5096 1.84932"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M40 38V45"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </div>
-              <div className={styles.textX}>
-                <svg
-                  width="48"
-                  height="60"
-                  viewBox="0 0 48 60"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16 59H32"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M24 59V38"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M23.9999 1C30.9609 1 34.4414 1 37.1636 2.61138C37.9527 3.07849 38.6824 3.63776 39.337 4.27717C41.5955 6.48283 42.47 9.82051 44.2191 16.4959L44.461 17.4194C46.8393 26.4947 48.0283 31.0323 45.8683 34.22C45.6532 34.5382 45.4162 34.8413 45.1596 35.1279C42.588 38 37.8565 38 28.3931 38H19.607C10.1435 38 5.41184 38 2.84017 35.1279C2.58367 34.8413 2.34691 34.5382 2.13151 34.22C-0.0282107 31.0323 1.16081 26.4947 3.5388 17.4194L3.7808 16.4959C5.52996 9.82051 6.40457 6.48283 8.6628 4.27717C9.31745 3.63776 10.0472 3.07849 10.8363 2.61138C11.3596 2.30163 11.9109 2.05143 12.5096 1.84932"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M40 38V45"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </div>
+              {/* <div className={styles.tabContainer}> */}
+                {tabs.map((tab, index) => (
+                  <div
+                    className={styles.textX}
+                    key={index}
+                    onClick={() => handleTabChange(index)}
+                  >
+                    <svg
+                      width="48"
+                      height="60"
+                      viewBox="0 0 48 60"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      {/* SVG Path Definitions Here */}
+                      <path
+                        d="M16 59H32"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M24 59V38"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M23.9999 1C30.9609 1 34.4414 1 37.1636 2.61138C37.9527 3.07849 38.6824 3.63776 39.337 4.27717C41.5955 6.48283 42.47 9.82051 44.2191 16.4959L44.461 17.4194C46.8393 26.4947 48.0283 31.0323 45.8683 34.22C45.6532 34.5382 45.4162 34.8413 45.1596 35.1279C42.588 38 37.8565 38 28.3931 38H19.607C10.1435 38 5.41184 38 2.84017 35.1279C2.58367 34.8413 2.34691 34.5382 2.13151 34.22C-0.0282107 31.0323 1.16081 26.4947 3.5388 17.4194L3.7808 16.4959C5.52996 9.82051 6.40457 6.48283 8.6628 4.27717C9.31745 3.63776 10.0472 3.07849 10.8363 2.61138C11.3596 2.30163 11.9109 2.05143 12.5096 1.84932"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M40 38V45"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </div>
+                ))}
+              {/* </div> */}
             </motion.div>
           </div>
         </div>
-      )}  
+      )}
       {/* info button  */}
       {scrollPercentage >= 10 && (
         <div className={styles.buttonOuter} ref={buttonRef}>
