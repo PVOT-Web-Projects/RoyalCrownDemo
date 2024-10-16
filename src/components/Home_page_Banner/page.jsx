@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Animation = ({ loadImage, counter }) => {
   const [loading, setLoading] = useState(true);
+  // const [activeTab, setActiveTab] = useState(-1); // Set -1 for default
   const [activeTab, setActiveTab] = useState(0);
   const sectionRef = useRef(null);
   const canvasRef = useRef(null);
@@ -20,58 +21,100 @@ const Animation = ({ loadImage, counter }) => {
   const [popup, setPopup] = useState(false);
   const [scrollPercentage, setScrollPercentage] = useState(0);
 
+  // const defaultFrames = {
+  //   frameCount: 290, // Define the number of frames for the default view
+  //   imageBaseUrl: "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/",
+  // };
   const tabs = [
     {
-      frameCount: 300,
-      imageBaseUrl: "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/",
+      frameCount: 150,
+      imageBaseUrl: "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/Kitchen/",
     },
     {
-      frameCount: 220,
-      imageBaseUrl: "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/bedroom/",
+      frameCount: 110,
+      imageBaseUrl: "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/BedRoom/",
     },
     {
-      frameCount: 300,
-      imageBaseUrl: "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/",
+      frameCount: 120,
+      imageBaseUrl: "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/Washroom/",
     },
   ];
 
+  // const loadImages = async (frameCount, baseUrl) => {
+  //   const imgUrls = Array.from({ length: frameCount }, (_, i) => `${baseUrl}${(i + 1).toString().padStart(4, "0")}.webp`);
+
+  //   setLoading(true);
+    
+  //   const promises = imgUrls.map((url) => {
+  //     return new Promise((resolve) => {
+  //       const img = new Image();
+  //       img.src = url;
+  //       img.onload = () => {
+  //         imagesRef.current.push(img);
+  //         resolve();
+  //       };
+  //       img.onerror = () => {
+  //         console.error(`Error loading image: ${url}`);
+  //         resolve(); // Resolve to allow other images to load
+  //       };
+  //     });
+  //   });
+
+  //   await Promise.all(promises);
+  //   airpodsRef.current.frame = 0; 
+  //   requestAnimationFrame(render);
+  //   setLoading(false);
+  // };
+
+
   const loadImages = async (frameCount, baseUrl) => {
     const imgUrls = Array.from({ length: frameCount }, (_, i) => `${baseUrl}${(i + 1).toString().padStart(4, "0")}.webp`);
-
     setLoading(true);
-    
-    const promises = imgUrls.map((url) => {
-      return new Promise((resolve) => {
-        const img = new Image();
-        img.src = url;
-        img.onload = () => {
-          imagesRef.current.push(img);
-          resolve();
-        };
-        img.onerror = () => {
-          console.error(`Error loading image: ${url}`);
-          resolve(); // Resolve to allow other images to load
-        };
-      });
-    });
 
-    await Promise.all(promises);
-    airpodsRef.current.frame = 0; 
+    // Load images
+    imagesRef.current = await Promise.all(
+      imgUrls.map(
+        (url) =>
+          new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = url;
+            img.onload = () => resolve(img);
+            img.onerror = () => resolve(null); // Resolve even if an image fails to load
+          })
+      )
+    );
+
+    setLoading(false); // All images are loaded
+    airpodsRef.current.frame = 0; // Start with the first frame
     requestAnimationFrame(render);
-    setLoading(false);
   };
-
   useEffect(() => {
-    const defaultTabIndex = 0;
+    const defaultTabIndex = 0;  // Start with the default tab
     setActiveTab(defaultTabIndex);
-    loadImages(tabs[defaultTabIndex].frameCount, tabs[defaultTabIndex].imageBaseUrl);
+    // loadImages(defaultFrames.frameCount, defaultFrames.imageBaseUrl);
+    loadImages(tabs[defaultTabIndex].frameCount, tabs[defaultTabIndex].imageBaseUrl);  
   }, []);
 
+
   const handleTabChange = (index) => {
-    setActiveTab(index);
-    imagesRef.current = []; // Clear previous images
-    loadImages(tabs[index].frameCount, tabs[index].imageBaseUrl);
+    // Smooth scroll to the top before loading new frames
+    window.scrollTo({
+      top: -500,  
+      behavior: "smooth",
+    });
+
+    // Wait until the scroll finishes, then load new frames
+    setTimeout(() => {
+      setActiveTab(index);
+      loadImages(tabs[index].frameCount, tabs[index].imageBaseUrl);
+    }, 500); // Adjust the delay based on your scrolling speed
   };
+
+  // const handleTabChange = (index) => {
+  //   setActiveTab(index);
+  //   // imagesRef.current = []; // Clear previous images
+  //   loadImages(tabs[index].frameCount, tabs[index].imageBaseUrl);
+  // };
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -98,16 +141,37 @@ const Animation = ({ loadImage, counter }) => {
     setCanvasSize();
     window.addEventListener("resize", setCanvasSize);
 
+    // const animationTimeline = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: section,
+    //     pin: true,
+    //     scrub: true,
+    //     end: `+=${tabs[activeTab].frameCount * 10}%`, // Adjust based on frame count
+    //     onUpdate: (self) => {
+    //       const progress = self.progress;
+    //       airpodsRef.current.frame = Math.floor(progress * (tabs[activeTab].frameCount - 1));
+    //       requestAnimationFrame(render);
+    //     },
+    //   },
+    // });
+
     const animationTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         pin: true,
-        scrub: false,
-        end: "+=1400%",
+        scrub: true,
+        // end: `+=${(activeTab === -1 ? defaultFrames : tabs[activeTab]).frameCount * 10}%`,
+        end: `+=${tabs[activeTab].frameCount * 10}%`,
         onUpdate: (self) => {
           const progress = self.progress;
-          airpodsRef.current.frame = Math.floor(progress * (tabs[activeTab].frameCount - 1));
-          requestAnimationFrame(render);
+          const frameIndex = Math.floor(progress * (tabs[activeTab].frameCount - 1));
+          // const frameIndex = Math.floor(progress * ((activeTab === -1 ? defaultFrames : tabs[activeTab]).frameCount - 1));
+
+          // Only update if the frame is different from the current one
+          if (airpodsRef.current.frame !== frameIndex) {
+            airpodsRef.current.frame = frameIndex;
+            requestAnimationFrame(render);
+          }
         },
       },
     });
@@ -118,11 +182,24 @@ const Animation = ({ loadImage, counter }) => {
     };
   }, [activeTab]);
 
+  // const render = () => {
+  //   if (imagesRef.current[airpodsRef.current.frame]) {
+  //     contextRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+  //     contextRef.current.drawImage(
+  //       imagesRef.current[airpodsRef.current.frame],
+  //       0,
+  //       0,
+  //       canvasRef.current.width,
+  //       canvasRef.current.height
+  //     );
+  //   }
+  // };
   const render = () => {
-    if (imagesRef.current[airpodsRef.current.frame]) {
+    const frame = airpodsRef.current.frame;
+    if (imagesRef.current[frame]) {
       contextRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
       contextRef.current.drawImage(
-        imagesRef.current[airpodsRef.current.frame],
+        imagesRef.current[frame],
         0,
         0,
         canvasRef.current.width,
@@ -168,7 +245,7 @@ const Animation = ({ loadImage, counter }) => {
             willChange: "transform",
           }}
         ></canvas>
-        {loading && <div className={styles.loadingPlaceholder}>Loading...</div>}
+        {/* {loading && <div className={styles.loadingPlaceholder}>Loading...</div>} */}
       </section>
 
       {scrollPercentage >= 3 && (
@@ -177,7 +254,7 @@ const Animation = ({ loadImage, counter }) => {
             className={styles.buttonX}
             role="button"
             initial="hidden"
-            animate={scrollPercentage >= 55 ? "upsideDown" : "visible"}
+            animate={scrollPercentage >= 50 ? "upsideDown" : "visible"}
             variants={buttonVariants}
           >
             {tabs.map((tab, index) => (
