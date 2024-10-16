@@ -6,13 +6,11 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import styles from "@/components/Home_page_Banner/Banner.module.css";
 import Popup from "@/components/Popup/page";
-
 gsap.registerPlugin(ScrollTrigger);
-
 const Animation = ({ loadImage, counter }) => {
   const [loading, setLoading] = useState(true);
-  // const [activeTab, setActiveTab] = useState(-1); // Set -1 for default
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(-1); // Set -1 for default
+  // const [activeTab, setActiveTab] = useState(0);
   const sectionRef = useRef(null);
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
@@ -20,11 +18,10 @@ const Animation = ({ loadImage, counter }) => {
   const airpodsRef = useRef({ frame: 0 });
   const [popup, setPopup] = useState(false);
   const [scrollPercentage, setScrollPercentage] = useState(0);
-
-  // const defaultFrames = {
-  //   frameCount: 290, // Define the number of frames for the default view
-  //   imageBaseUrl: "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/",
-  // };
+  const defaultFrames = {
+    frameCount: 180, // Define the number of frames for the default view
+    imageBaseUrl: "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/Livingroom/",
+  };
   const tabs = [
     {
       frameCount: 150,
@@ -39,12 +36,9 @@ const Animation = ({ loadImage, counter }) => {
       imageBaseUrl: "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/Washroom/",
     },
   ];
-
   // const loadImages = async (frameCount, baseUrl) => {
   //   const imgUrls = Array.from({ length: frameCount }, (_, i) => `${baseUrl}${(i + 1).toString().padStart(4, "0")}.webp`);
-
   //   setLoading(true);
-    
   //   const promises = imgUrls.map((url) => {
   //     return new Promise((resolve) => {
   //       const img = new Image();
@@ -59,18 +53,14 @@ const Animation = ({ loadImage, counter }) => {
   //       };
   //     });
   //   });
-
   //   await Promise.all(promises);
-  //   airpodsRef.current.frame = 0; 
+  //   airpodsRef.current.frame = 0;
   //   requestAnimationFrame(render);
   //   setLoading(false);
   // };
-
-
   const loadImages = async (frameCount, baseUrl) => {
     const imgUrls = Array.from({ length: frameCount }, (_, i) => `${baseUrl}${(i + 1).toString().padStart(4, "0")}.webp`);
     setLoading(true);
-
     // Load images
     imagesRef.current = await Promise.all(
       imgUrls.map(
@@ -83,49 +73,41 @@ const Animation = ({ loadImage, counter }) => {
           })
       )
     );
-
     setLoading(false); // All images are loaded
     airpodsRef.current.frame = 0; // Start with the first frame
     requestAnimationFrame(render);
   };
   useEffect(() => {
-    const defaultTabIndex = 0;  // Start with the default tab
+    const defaultTabIndex = -1;  // Start with the default tab
     setActiveTab(defaultTabIndex);
-    // loadImages(defaultFrames.frameCount, defaultFrames.imageBaseUrl);
-    loadImages(tabs[defaultTabIndex].frameCount, tabs[defaultTabIndex].imageBaseUrl);  
+    loadImages(defaultFrames.frameCount, defaultFrames.imageBaseUrl);
+    // loadImages(tabs[defaultTabIndex].frameCount, tabs[defaultTabIndex].imageBaseUrl);
   }, []);
-
-
   const handleTabChange = (index) => {
     // Smooth scroll to the top before loading new frames
     window.scrollTo({
-      top: -500,  
+      top: -500,
       behavior: "smooth",
     });
-
     // Wait until the scroll finishes, then load new frames
     setTimeout(() => {
       setActiveTab(index);
       loadImages(tabs[index].frameCount, tabs[index].imageBaseUrl);
     }, 500); // Adjust the delay based on your scrolling speed
   };
-
   // const handleTabChange = (index) => {
   //   setActiveTab(index);
   //   // imagesRef.current = []; // Clear previous images
   //   loadImages(tabs[index].frameCount, tabs[index].imageBaseUrl);
   // };
-
   useEffect(() => {
     const section = sectionRef.current;
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     contextRef.current = context;
-
     const setCanvasSize = () => {
       const aspectRatio = 1632 / 918;
       const availableWidth = window.innerWidth;
-
       if (availableWidth < 200) {
         canvas.width = 1632 / 2;
         canvas.height = 918 / 2;
@@ -133,14 +115,11 @@ const Animation = ({ loadImage, counter }) => {
         canvas.width = 1632;
         canvas.height = 918;
       }
-
       canvas.style.width = "100%";
       canvas.style.height = "100vh";
     };
-
     setCanvasSize();
     window.addEventListener("resize", setCanvasSize);
-
     // const animationTimeline = gsap.timeline({
     //   scrollTrigger: {
     //     trigger: section,
@@ -154,19 +133,17 @@ const Animation = ({ loadImage, counter }) => {
     //     },
     //   },
     // });
-
     const animationTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         pin: true,
         scrub: true,
-        // end: `+=${(activeTab === -1 ? defaultFrames : tabs[activeTab]).frameCount * 10}%`,
-        end: `+=${tabs[activeTab].frameCount * 10}%`,
+        end: `+=${(activeTab === -1 ? defaultFrames : tabs[activeTab]).frameCount * 10}%`,
+        // end: `+=${tabs[activeTab].frameCount * 10}%`,
         onUpdate: (self) => {
           const progress = self.progress;
-          const frameIndex = Math.floor(progress * (tabs[activeTab].frameCount - 1));
-          // const frameIndex = Math.floor(progress * ((activeTab === -1 ? defaultFrames : tabs[activeTab]).frameCount - 1));
-
+          // const frameIndex = Math.floor(progress * (tabs[activeTab].frameCount - 1));
+          const frameIndex = Math.floor(progress * ((activeTab === -1 ? defaultFrames : tabs[activeTab]).frameCount - 1));
           // Only update if the frame is different from the current one
           if (airpodsRef.current.frame !== frameIndex) {
             airpodsRef.current.frame = frameIndex;
@@ -175,13 +152,11 @@ const Animation = ({ loadImage, counter }) => {
         },
       },
     });
-
     return () => {
       window.removeEventListener("resize", setCanvasSize);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [activeTab]);
-
   // const render = () => {
   //   if (imagesRef.current[airpodsRef.current.frame]) {
   //     contextRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
@@ -207,7 +182,6 @@ const Animation = ({ loadImage, counter }) => {
       );
     }
   };
-
   const updateScrollPercentage = () => {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
@@ -216,23 +190,18 @@ const Animation = ({ loadImage, counter }) => {
     const currentScrollPercentage = (scrollPosition / totalScroll) * 100;
     setScrollPercentage(currentScrollPercentage);
   };
-
   useEffect(() => {
     window.addEventListener("scroll", updateScrollPercentage);
     return () => window.removeEventListener("scroll", updateScrollPercentage);
   }, []);
-
   const handlePopup = () => setPopup(true);
   const handlePopupClose = () => setPopup(false);
-
   const [buttonRef, buttonInView] = useInView();
-
   const buttonVariants = {
     hidden: { opacity: 0, y: 120 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
     upsideDown: { opacity: 0, y: 180, transition: { duration: 0.3 } },
   };
-
   return (
     <section>
       <section ref={sectionRef}>
@@ -247,14 +216,13 @@ const Animation = ({ loadImage, counter }) => {
         ></canvas>
         {/* {loading && <div className={styles.loadingPlaceholder}>Loading...</div>} */}
       </section>
-
       {scrollPercentage >= 3 && (
         <div className={styles.buttonOuter} ref={buttonRef}>
           <motion.div
             className={styles.buttonX}
             role="button"
             initial="hidden"
-            animate={scrollPercentage >= 50 ? "upsideDown" : "visible"}
+            animate={scrollPercentage >= 55 ? "upsideDown" : "visible"}
             variants={buttonVariants}
           >
             {tabs.map((tab, index) => (
@@ -302,7 +270,6 @@ const Animation = ({ loadImage, counter }) => {
           </motion.div>
         </div>
       )}
-
       {scrollPercentage >= 3 && (
         <div className={styles.buttonOuter} ref={buttonRef}>
           <div className={styles.ModalPopupOuter}>
@@ -336,5 +303,4 @@ const Animation = ({ loadImage, counter }) => {
     </section>
   );
 };
-
 export default Animation;
