@@ -60,7 +60,7 @@ export default function Home() {
       </>
     )}
     <main className="main">
-      <HeroBanner />
+      {/* <HeroBanner /> */}
       <HomeHeroSection />
       <NewThreeDSlider />
       {/* <ThreeSlider /> */}

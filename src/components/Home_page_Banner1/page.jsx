@@ -9,7 +9,7 @@ import { useInView } from "react-intersection-observer";
 import styles from "@/components/Home_page_Banner/Banner.module.css";
 import "./scroll.css";
 import Popup from "@/components/Popup/page";
-import { errorToJSON } from "next/dist/server/render";
+import Link from "next/link";
 // import Image from "next/image";
 // import Img1 from "@/images/livingroom.svg"
 gsap.registerPlugin(ScrollTrigger);
@@ -99,13 +99,18 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
     setCanvasSize();
     window.addEventListener("resize", setCanvasSize);
     // https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/0001.webp
-    const frameCount = 100;
-    const currentFrame = (index) =>
-      `https://interiormaataassets.humbeestudio.xyz/mainsiteassets/Livingroom/${(
-        index + 1
-      )
-        .toString()
-        .padStart(3, "0")}.webp`;
+    const frameCount = 290;
+    // const currentFrame = (index) =>
+    //   `https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/${(
+    //     index + 1
+    //   )
+    //     .toString()
+    //     .padStart(4, "0")}.webp`;
+
+    const currentFrame = (index) => {
+      return `${frameLink}${(index + 1).toString().padStart(4, "0")}.webp`;
+    };
+    
 
     let imgL = [];
     for (let i = 0; i < frameCount; i++) {
@@ -115,26 +120,43 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
       imgL.push(img.src);
     }
 
-    const loadImages = async () => {
-      try {
-        const loadImagePromises = imgL.map((imageUrl, index) => {
-          return new Promise((resolve) => {
-            const img = new Image();
-            img.src = imageUrl;
-            img.onload = () => {
-              setLoadingCounter(index + 1);
-              resolve();
-            };
-          });
-        });
+    // const loadImages = async () => {
+    //   try {
+    //     const loadImagePromises = imgL.map((imageUrl, index) => {
+    //       return new Promise((resolve) => {
+    //         const img = new Image();
+    //         img.src = imageUrl;
+    //         img.onload = () => {
+    //           setLoadingCounter(index + 1);
+    //           resolve();
+    //         };
+    //       });
+    //     });
 
-        await Promise.all(loadImagePromises);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error loading images:", error);
-      }
-    };
-    loadImages();
+    //     await Promise.all(loadImagePromises);
+    //     setLoading(false);
+    //   } catch (error) {
+    //     console.error("Error loading images:", error);
+    //   }
+    // };
+    // loadImages();
+   
+     // Load images in a separate useEffect
+  const loadImages = async () => {
+    const newImages = [];
+    for (let i = 0; i < frameCount; i++) {
+      const img = new Image();
+      img.src = currentFrame(i);  // Load each frame
+      newImages.push(img);
+    }
+    imagesRef.current = newImages;
+    setLoading(false);
+  };
+
+  setLoading(true);
+  loadImages();
+
+  // imagesRef.current[0].onload = render;
     console.log(imgL);
     console.log("Counter", loadingCounter);
 
@@ -166,6 +188,8 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
 
     // imagesRef.current[0].onload = render;
 
+ 
+
     function render() {
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(
@@ -176,12 +200,36 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
         canvas.height
       );
     }
+    if (!loading) {
+      render();
+    }
+
+const handleTextXClick = () => {
+  setFrameLink('https://interiormaataassets.humbeestudio.xyz/mainsiteassets/bedroom/');  // Update frame link dynamically
+  setFrameCount(290);  // Update the frame count dynamically
+};
+
 
     return () => {
       window.removeEventListener("resize", setCanvasSize);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [frameLink, frameCount, loadingCounter]);
+
+  useEffect(() => {
+    const loadImages = async () => {
+      const newImages = [];
+      for (let i = 0; i < frameCount; i++) {
+        const img = new Image();
+        img.src = currentFrame(i);  // Load each frame
+        newImages.push(img);
+      }
+      imagesRef.current = newImages;
+      setLoading(false);
+    };
+  
+    loadImages();
+  }, [frameLink, frameCount]);
 
   console.log(loadImage(loading));
 
@@ -266,6 +314,13 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
     upsideDown: { opacity: 0, y: 180, transition: { duration: 0.3 } },
   };
 
+  // Define the click handler function to update frames
+const handleFrameChange = (newLink, newCount) => {
+  setFrameLink(newLink);
+  setFrameCount(newCount);
+  console.log(`New link: ${newLink}, New frame count: ${newCount}`);
+};
+
   return (
     <section>
       <section ref={sectionRef}>
@@ -347,7 +402,7 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
       </video> */}
 
       {/* <MusicPlayer /> */}
-      {scrollPercentage >= 3 && (
+      {scrollPercentage >= 10 && (
         <div className={styles.buttonOuter} ref={buttonRef}>
           <div>
             <motion.div
@@ -382,9 +437,17 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
               variants={buttonVariants}
             >
               <div className={styles.textX} 
+              onClick={handleTextXClick}
+              id="text1"
               //  <DynamicSvg onClick={() => handleSvgClick('https://interiormaataassets.humbeestudio.xyz/mainsiteassets/desktop/new/', 300)} />
-              onClick={() => handleTextXClick('https://plywoodassets.royaletouche.com/assets/newframes/factorywalkdesktop/F008.webp', 290)}>
+              // onClick={() => handleTextXClick('https://plywoodassets.royaletouche.com/assets/newframes/factorywalkdesktop/F008.webp', 1)}
+             >
+               {/* <button onClick={handleTextXClick}>Load New Frames</button> */}
+               <canvas ref={canvasRef} width={800} height={600}></canvas>
+                 {/* <Link href={"/frames"} > */}
                 <svg
+                  // onClick={() => handleFrameChange('https://plywoodassets.royaletouche.com/assets/newframes/factorywalkdesktop/F008.webp', 300)}
+             
                   width="48"
                   height="60"
                   viewBox="0 0 48 60"
@@ -416,6 +479,7 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
                     stroke-linecap="round"
                   />
                 </svg>
+                {/* </Link> */}
               </div>
               <div className={styles.textX}>
                 <svg
@@ -478,7 +542,7 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
                     stroke-linecap="round"
                   />
                   <path
-                    d="M40 38V45"
+                    d="M40 38V45" 
                     stroke="white"
                     stroke-width="2"
                     stroke-linecap="round"
@@ -490,7 +554,7 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
         </div>
       )}  
       {/* info button  */}
-      {scrollPercentage >= 3 && (
+      {scrollPercentage >= 10 && (
         <div className={styles.buttonOuter} ref={buttonRef}>
           <div className={styles.ModalPopupOuter}>
             <div className={styles.footerPopup}>
@@ -528,7 +592,7 @@ const Animation = ({ loadImage, counter, imageBaseUrl, initialFrameCount }) => {
               }
               variants={buttonVariants}
             >
-              <div className={styles.textX}>
+              <div className={styles.textX} >
                 <svg
                   width="24"
                   height="24"
