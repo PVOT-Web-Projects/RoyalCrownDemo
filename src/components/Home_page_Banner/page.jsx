@@ -6,6 +6,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import styles from "@/components/Home_page_Banner/Banner.module.css";
 import Popup from "@/components/Popup/page";
+import Lenis from "@studio-freight/lenis"; // Import Lenis
 gsap.registerPlugin(ScrollTrigger);
 const Animation = ({ loadImage, counter }) => {
   const [loading, setLoading] = useState(true);
@@ -36,6 +37,32 @@ const Animation = ({ loadImage, counter }) => {
       imageBaseUrl: "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/Washroom/",
     },
   ];
+
+   // Initialize Lenis
+   const lenis = useRef(null);
+
+   useEffect(() => {
+     lenis.current = new Lenis({
+       duration: 0.4, // Duration for the scroll animation
+      //  easing: (t) => {
+      //   // Use a smoother easing function (like easeInOut)
+      //   return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      // },
+      easing: (t) => t * (2 - t), // Use a smoother easing function
+      smooth: true, // Enable smooth scrolling
+     });
+ 
+     const scroll = (time) => {
+       lenis.current.raf(time);
+       requestAnimationFrame(scroll);
+     };
+ 
+     requestAnimationFrame(scroll);
+     
+     return () => {
+       lenis.current.destroy();
+     };
+   }, []);
   // const loadImages = async (frameCount, baseUrl) => {
   //   const imgUrls = Array.from({ length: frameCount }, (_, i) => `${baseUrl}${(i + 1).toString().padStart(4, "0")}.webp`);
   //   setLoading(true);
@@ -137,7 +164,7 @@ const Animation = ({ loadImage, counter }) => {
       scrollTrigger: {
         trigger: section,
         pin: true,
-        scrub: true,
+        scrub: 0.5,
         end: `+=${(activeTab === -1 ? defaultFrames : tabs[activeTab]).frameCount * 10}%`,
         // end: `+=${tabs[activeTab].frameCount * 10}%`,
         onUpdate: (self) => {
