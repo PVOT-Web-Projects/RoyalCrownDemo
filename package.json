@@ -12,11 +12,12 @@
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.4",
+    "critters": "^0.0.25",
     "formik": "^2.4.6",
     "framer-motion": "^11.2.10",
     "gsap": "^3.12.5",
     "locomotive-scroll": "^4.1.4",
-    "next": "14.2.3",
+    "next": "^14.2.15",
     "primereact": "^10.6.6",
     "react": "^18",
     "react-dom": "^18",
@@ -33,4 +34,5 @@
     "eslint-config-next": "14.2.3",
     "sass": "^1.77.4"
   }
+  
 }
