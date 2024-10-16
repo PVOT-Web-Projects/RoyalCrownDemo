@@ -1,9 +1,9 @@
 // import FaqData from "@/components/faqaccordian/faqdata";
-import HomePageBanner from "@/components/Home_page_Banner1/page"
+// import HomePageBanner from "@/components/Home_page_Banner1/page"
 const FaqPage =() =>{
     return(
         <div>
-            <HomePageBanner />
+            {/* <HomePageBanner /> */}
         </div>
     )
 }
