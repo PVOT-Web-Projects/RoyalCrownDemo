@@ -45,12 +45,14 @@
 .buttonOuter1 {
   /* position: fixed; */
   position: fixed;
-  bottom: 8rem;
-  left: 95%;
+ 
   display: flex;
   justify-content: end;
   padding: 0 50px;
   z-index: 1000; 
+  left: 93%;
+    bottom: 3rem;
+    
 }
 
 .buttonX {
@@ -375,7 +377,12 @@
     /* bottom: 25rem; */
   }
 }
-
+@media(min-width: 1500px){
+  .buttonOuter1{
+    bottom: 8rem;
+    left: 95%;
+  }
+}
 @media (min-width: 1024px) and (max-width: 1440px) {
   .text1 {
     position: absolute;
