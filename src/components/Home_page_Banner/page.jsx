@@ -229,6 +229,10 @@ const Animation = ({ loadImage, counter }) => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
     upsideDown: { opacity: 0, y: 180, transition: { duration: 0.3 } },
   };
+  useEffect(() => {
+    console.log("Scroll Percentage:", scrollPercentage); // Log to debug
+}, [scrollPercentage]);
+
   return (
     <section>
       <section ref={sectionRef}>
