@@ -9,8 +9,14 @@ import "./popupSwiper.scss";
 import { FreeMode, Navigation, Pagination, EffectFade } from "swiper/modules";
 import Image from "next/image";
 import PopupSliderData from "./PopupSliderData";
+import { useState } from "react";
 
 export default function popupSlider() {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const handleImageClick = (index) => {
+    setSelectedIndex(index);
+  };
   return (
     <div className="PopupSwiperWrapper">
       <div className="PopupSwiperContainer">
@@ -100,11 +106,11 @@ export default function popupSlider() {
         >
           {PopupSliderData.map((swiperData, index) => (
             <SwiperSlide className="PopupSwiperCardOuter" key={index}>
-              <div className="PopupSwiperCardWrapper">
+              <div className="PopupSwiperCardWrapper" onClick={() => handleImageClick(index)}>
                 <div className="PopupSwiperCardInner">
                   <Image
                     src={swiperData.image}
-                    alt=""
+                    alt="none"
                     className="PopupImage"
                   />
                 </div>
@@ -120,7 +126,7 @@ export default function popupSlider() {
               </div>
               <div className="PopupswiperCardDescription">
                 <p className="PopupswiperCardDescriptionInner">
-                  {swiperData.description}
+                {selectedIndex === index ? swiperData.description : ""}
                 </p>
               </div>
             </SwiperSlide>

@@ -9,21 +9,28 @@ import CardImg6 from "@/images/newdemosvg.svg";
 const PopupSliderData = [
   {
     image: CardImg1,
+    // header: "fdfdf",
+    description: "Kitchen",
   },
   {
     image: CardImg2,
+    description: "Bedroom",
   },
   {
     image: CardImg3,
+    description: "Washroom",
   },
   {
     image: CardImg4,
+    description: "Living Room",
   },
   {
     image: CardImg5,
+    description: "Kitchen",
   },
   {
     image: CardImg6,
+    description: "Bedroom",
   },
 ];
 export default PopupSliderData;

@@ -302,7 +302,7 @@ const Animation = ({ loadImage, counter }) => {
         </div>
       )}
       {scrollPercentage >= 3 && (
-        <div className={styles.buttonOuter} ref={buttonRef}>
+        <div className={styles.buttonOuter1} ref={buttonRef}>
           <div className={styles.ModalPopupOuter}>
             <div className={styles.footerPopup}>
               {popup && <Popup close={handlePopupClose} />}
