@@ -40,7 +40,7 @@
   display: flex;
   justify-content: end;
   padding: 0 50px;
-  z-index: 1000;
+  z-index: 1000 !important;
 }
 .buttonOuter1 {
   /* position: fixed; */
