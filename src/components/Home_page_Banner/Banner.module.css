@@ -50,7 +50,7 @@
   padding: 0 50px;
   /* z-index: 1000;  */
   left: 93%;
-  bottom: 3rem;
+  bottom: -3rem;
 }
 
 .buttonX {
@@ -374,8 +374,6 @@
     line-height: 90px;
     /* bottom: 25rem; */
   }
-}
-@media (min-width: 1500px) {
   .buttonOuter1 {
     bottom: 8rem;
     left: 95%;
