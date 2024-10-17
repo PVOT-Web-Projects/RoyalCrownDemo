@@ -164,7 +164,7 @@ const Animation = ({ loadImage, counter }) => {
       scrollTrigger: {
         trigger: section,
         pin: true,
-        scrub: 0.5,
+        scrub: 0.2,
         end: `+=${(activeTab === -1 ? defaultFrames : tabs[activeTab]).frameCount * 10}%`,
         // end: `+=${tabs[activeTab].frameCount * 10}%`,
         onUpdate: (self) => {
