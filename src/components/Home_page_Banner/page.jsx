@@ -147,6 +147,7 @@ const Animation = ({ loadImage, counter }) => {
     };
     setCanvasSize();
     window.addEventListener("resize", setCanvasSize);
+    
     // const animationTimeline = gsap.timeline({
     //   scrollTrigger: {
     //     trigger: section,
@@ -160,6 +161,7 @@ const Animation = ({ loadImage, counter }) => {
     //     },
     //   },
     // });
+    
     const animationTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -196,6 +198,8 @@ const Animation = ({ loadImage, counter }) => {
   //     );
   //   }
   // };
+
+  
   const render = () => {
     const frame = airpodsRef.current.frame;
     if (imagesRef.current[frame]) {
@@ -225,6 +229,11 @@ const Animation = ({ loadImage, counter }) => {
   const handlePopupClose = () => setPopup(false);
   const [buttonRef, buttonInView] = useInView();
   const buttonVariants = {
+    hidden: { opacity: 0, y: 120 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    upsideDown: { opacity: 0, y: 180, transition: { duration: 0.3 } },
+  };
+  const buttonVariantsOne = {
     hidden: { opacity: 0, y: 120 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
     upsideDown: { opacity: 0, y: 180, transition: { duration: 0.3 } },
@@ -313,7 +322,7 @@ const Animation = ({ loadImage, counter }) => {
               role="button"
               initial="hidden"
               animate={scrollPercentage >= 55 ? "upsideDown" : "visible"}
-              variants={buttonVariants}
+              variants={buttonVariantsOne}
             >
               <div className={styles.textX}>
               <svg
