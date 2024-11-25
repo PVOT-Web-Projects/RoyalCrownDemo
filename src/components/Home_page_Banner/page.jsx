@@ -5,9 +5,10 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import styles from "@/components/Home_page_Banner/Banner.module.css";
-import Popup from "@/components/Popup/page";
+// import Popup from "@/components/Popup/page";
 import Lenis from "@studio-freight/lenis"; // Import Lenis
 gsap.registerPlugin(ScrollTrigger);
+
 const Animation = ({ loadImage, counter }) => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState(-1); // Set -1 for default
@@ -17,133 +18,133 @@ const Animation = ({ loadImage, counter }) => {
   const contextRef = useRef(null);
   const imagesRef = useRef([]);
   const airpodsRef = useRef({ frame: 0 });
-  const [popup, setPopup] = useState(false);
+  // const [popup, setPopup] = useState(false);
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const defaultFrames = {
-    frameCount: 180, // Define the number of frames for the default view
+    frameCount: 1199, // Define the number of frames for the default view
     imageBaseUrl:
-      "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/Livingroom/",
+      "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/RcFrames/",
   };
-  const tabs = [
-    {
-      frameCount: 150,
-      imageBaseUrl:
-        "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/Kitchen/",
-      icon: (
-        <svg
-          width="48"
-          height="60"
-          viewBox="0 0 48 60"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M16 59H32"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <path
-            d="M24 59V38"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <path
-            d="M23.9999 1C30.9609 1 34.4414 1 37.1636 2.61138C37.9527 3.07849 38.6824 3.63776 39.337 4.27717C41.5955 6.48283 42.47 9.82051 44.2191 16.4959L44.461 17.4194C46.8393 26.4947 48.0283 31.0323 45.8683 34.22C45.6532 34.5382 45.4162 34.8413 45.1596 35.1279C42.588 38 37.8565 38 28.3931 38H19.607C10.1435 38 5.41184 38 2.84017 35.1279C2.58367 34.8413 2.34691 34.5382 2.13151 34.22C-0.0282107 31.0323 1.16081 26.4947 3.5388 17.4194L3.7808 16.4959C5.52996 9.82051 6.40457 6.48283 8.6628 4.27717C9.31745 3.63776 10.0472 3.07849 10.8363 2.61138C11.3596 2.30163 11.9109 2.05143 12.5096 1.84932"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <path
-            d="M40 38V45"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </svg>
-      ),
-    },
-    {
-      frameCount: 110,
-      imageBaseUrl:
-        "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/BedRoom/",
-        icon: (
-          <svg
-            width="48"
-            height="60"
-            viewBox="0 0 48 60"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16 59H32"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M24 59V38"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M23.9999 1C30.9609 1 34.4414 1 37.1636 2.61138C37.9527 3.07849 38.6824 3.63776 39.337 4.27717C41.5955 6.48283 42.47 9.82051 44.2191 16.4959L44.461 17.4194C46.8393 26.4947 48.0283 31.0323 45.8683 34.22C45.6532 34.5382 45.4162 34.8413 45.1596 35.1279C42.588 38 37.8565 38 28.3931 38H19.607C10.1435 38 5.41184 38 2.84017 35.1279C2.58367 34.8413 2.34691 34.5382 2.13151 34.22C-0.0282107 31.0323 1.16081 26.4947 3.5388 17.4194L3.7808 16.4959C5.52996 9.82051 6.40457 6.48283 8.6628 4.27717C9.31745 3.63776 10.0472 3.07849 10.8363 2.61138C11.3596 2.30163 11.9109 2.05143 12.5096 1.84932"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M40 38V45"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        ),
-    },
+  // const tabs = [
+  //   {
+  //     frameCount: 150,
+  //     imageBaseUrl:
+  //       "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/Kitchen/",
+  //     icon: (
+  //       <svg
+  //         width="48"
+  //         height="60"
+  //         viewBox="0 0 48 60"
+  //         fill="none"
+  //         xmlns="http://www.w3.org/2000/svg"
+  //       >
+  //         <path
+  //           d="M16 59H32"
+  //           stroke="white"
+  //           strokeWidth="2"
+  //           strokeLinecap="round"
+  //         />
+  //         <path
+  //           d="M24 59V38"
+  //           stroke="white"
+  //           strokeWidth="2"
+  //           strokeLinecap="round"
+  //         />
+  //         <path
+  //           d="M23.9999 1C30.9609 1 34.4414 1 37.1636 2.61138C37.9527 3.07849 38.6824 3.63776 39.337 4.27717C41.5955 6.48283 42.47 9.82051 44.2191 16.4959L44.461 17.4194C46.8393 26.4947 48.0283 31.0323 45.8683 34.22C45.6532 34.5382 45.4162 34.8413 45.1596 35.1279C42.588 38 37.8565 38 28.3931 38H19.607C10.1435 38 5.41184 38 2.84017 35.1279C2.58367 34.8413 2.34691 34.5382 2.13151 34.22C-0.0282107 31.0323 1.16081 26.4947 3.5388 17.4194L3.7808 16.4959C5.52996 9.82051 6.40457 6.48283 8.6628 4.27717C9.31745 3.63776 10.0472 3.07849 10.8363 2.61138C11.3596 2.30163 11.9109 2.05143 12.5096 1.84932"
+  //           stroke="white"
+  //           strokeWidth="2"
+  //           strokeLinecap="round"
+  //         />
+  //         <path
+  //           d="M40 38V45"
+  //           stroke="white"
+  //           strokeWidth="2"
+  //           strokeLinecap="round"
+  //         />
+  //       </svg>
+  //     ),
+  //   },
+  //   {
+  //     frameCount: 150,
+  //     imageBaseUrl:
+  //       "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/BedroomDesktop/",
+  //       icon: (
+  //         <svg
+  //           width="48"
+  //           height="60"
+  //           viewBox="0 0 48 60"
+  //           fill="none"
+  //           xmlns="http://www.w3.org/2000/svg"
+  //         >
+  //           <path
+  //             d="M16 59H32"
+  //             stroke="white"
+  //             strokeWidth="2"
+  //             strokeLinecap="round"
+  //           />
+  //           <path
+  //             d="M24 59V38"
+  //             stroke="white"
+  //             strokeWidth="2"
+  //             strokeLinecap="round"
+  //           />
+  //           <path
+  //             d="M23.9999 1C30.9609 1 34.4414 1 37.1636 2.61138C37.9527 3.07849 38.6824 3.63776 39.337 4.27717C41.5955 6.48283 42.47 9.82051 44.2191 16.4959L44.461 17.4194C46.8393 26.4947 48.0283 31.0323 45.8683 34.22C45.6532 34.5382 45.4162 34.8413 45.1596 35.1279C42.588 38 37.8565 38 28.3931 38H19.607C10.1435 38 5.41184 38 2.84017 35.1279C2.58367 34.8413 2.34691 34.5382 2.13151 34.22C-0.0282107 31.0323 1.16081 26.4947 3.5388 17.4194L3.7808 16.4959C5.52996 9.82051 6.40457 6.48283 8.6628 4.27717C9.31745 3.63776 10.0472 3.07849 10.8363 2.61138C11.3596 2.30163 11.9109 2.05143 12.5096 1.84932"
+  //             stroke="white"
+  //             strokeWidth="2"
+  //             strokeLinecap="round"
+  //           />
+  //           <path
+  //             d="M40 38V45"
+  //             stroke="white"
+  //             strokeWidth="2"
+  //             strokeLinecap="round"
+  //           />
+  //         </svg>
+  //       ),
+  //   },
    
-    {
-      frameCount: 120,
-      imageBaseUrl:
-        "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/Washroom/",
-        icon: (
-          <svg
-            width="48"
-            height="60"
-            viewBox="0 0 48 60"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16 59H32"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M24 59V38"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M23.9999 1C30.9609 1 34.4414 1 37.1636 2.61138C37.9527 3.07849 38.6824 3.63776 39.337 4.27717C41.5955 6.48283 42.47 9.82051 44.2191 16.4959L44.461 17.4194C46.8393 26.4947 48.0283 31.0323 45.8683 34.22C45.6532 34.5382 45.4162 34.8413 45.1596 35.1279C42.588 38 37.8565 38 28.3931 38H19.607C10.1435 38 5.41184 38 2.84017 35.1279C2.58367 34.8413 2.34691 34.5382 2.13151 34.22C-0.0282107 31.0323 1.16081 26.4947 3.5388 17.4194L3.7808 16.4959C5.52996 9.82051 6.40457 6.48283 8.6628 4.27717C9.31745 3.63776 10.0472 3.07849 10.8363 2.61138C11.3596 2.30163 11.9109 2.05143 12.5096 1.84932"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M40 38V45"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        ),
-    },
-  ];
+  //   {
+  //     frameCount: 120,
+  //     imageBaseUrl:
+  //       "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/Washroom/",
+  //       icon: (
+  //         <svg
+  //           width="48"
+  //           height="60"
+  //           viewBox="0 0 48 60"
+  //           fill="none"
+  //           xmlns="http://www.w3.org/2000/svg"
+  //         >
+  //           <path
+  //             d="M16 59H32"
+  //             stroke="white"
+  //             strokeWidth="2"
+  //             strokeLinecap="round"
+  //           />
+  //           <path
+  //             d="M24 59V38"
+  //             stroke="white"
+  //             strokeWidth="2"
+  //             strokeLinecap="round"
+  //           />
+  //           <path
+  //             d="M23.9999 1C30.9609 1 34.4414 1 37.1636 2.61138C37.9527 3.07849 38.6824 3.63776 39.337 4.27717C41.5955 6.48283 42.47 9.82051 44.2191 16.4959L44.461 17.4194C46.8393 26.4947 48.0283 31.0323 45.8683 34.22C45.6532 34.5382 45.4162 34.8413 45.1596 35.1279C42.588 38 37.8565 38 28.3931 38H19.607C10.1435 38 5.41184 38 2.84017 35.1279C2.58367 34.8413 2.34691 34.5382 2.13151 34.22C-0.0282107 31.0323 1.16081 26.4947 3.5388 17.4194L3.7808 16.4959C5.52996 9.82051 6.40457 6.48283 8.6628 4.27717C9.31745 3.63776 10.0472 3.07849 10.8363 2.61138C11.3596 2.30163 11.9109 2.05143 12.5096 1.84932"
+  //             stroke="white"
+  //             strokeWidth="2"
+  //             strokeLinecap="round"
+  //           />
+  //           <path
+  //             d="M40 38V45"
+  //             stroke="white"
+  //             strokeWidth="2"
+  //             strokeLinecap="round"
+  //           />
+  //         </svg>
+  //       ),
+  //   },
+  // ];
 
   // Initialize Lenis
   const lenis = useRef(null);
@@ -195,7 +196,7 @@ const Animation = ({ loadImage, counter }) => {
   const loadImages = async (frameCount, baseUrl) => {
     const imgUrls = Array.from(
       { length: frameCount },
-      (_, i) => `${baseUrl}${(i + 1).toString().padStart(4, "0")}.webp`
+      (_, i) => `${baseUrl}${(i + 1).toString().padStart(4, "0")}.jpg`
     );
     setLoading(true);
     // Load images
@@ -276,10 +277,8 @@ const Animation = ({ loadImage, counter }) => {
       scrollTrigger: {
         trigger: section,
         pin: true,
-        scrub: 0.2,
-        end: `+=${
-          (activeTab === -1 ? defaultFrames : tabs[activeTab]).frameCount * 10
-        }%`,
+        scrub: true,
+        end: "+=1200%",
         // end: `+=${tabs[activeTab].frameCount * 10}%`,
         onUpdate: (self) => {
           const progress = self.progress;
@@ -345,19 +344,19 @@ const Animation = ({ loadImage, counter }) => {
     window.addEventListener("scroll", updateScrollPercentage);
     return () => window.removeEventListener("scroll", updateScrollPercentage);
   }, []);
-  const handlePopup = () => setPopup(true);
-  const handlePopupClose = () => setPopup(false);
-  const [buttonRef, buttonInView] = useInView();
-  const buttonVariants = {
-    hidden: { opacity: 0, y: 120 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-    upsideDown: { opacity: 0, y: 180, transition: { duration: 0.3 } },
-  };
-  const buttonVariantsOne = {
-    hidden: { opacity: 0, y: 120 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-    upsideDown: { opacity: 0, y: 180, transition: { duration: 0.3 } },
-  };
+  // const handlePopup = () => setPopup(true);
+  // const handlePopupClose = () => setPopup(false);
+  // const [buttonRef, buttonInView] = useInView();
+  // const buttonVariants = {
+  //   hidden: { opacity: 0, y: 120 },
+  //   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  //   upsideDown: { opacity: 0, y: 180, transition: { duration: 0.3 } },
+  // };
+  // const buttonVariantsOne = {
+  //   hidden: { opacity: 0, y: 120 },
+  //   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  //   upsideDown: { opacity: 0, y: 180, transition: { duration: 0.3 } },
+  // };
   useEffect(() => {
     console.log("Scroll Percentage:", scrollPercentage); // Log to debug
   }, [scrollPercentage]);
@@ -376,7 +375,7 @@ const Animation = ({ loadImage, counter }) => {
         ></canvas>
         {/* {loading && <div className={styles.loadingPlaceholder}>Loading...</div>} */}
       </section>
-      {scrollPercentage >= 3 && (
+      {/* {scrollPercentage >= 3 && (
         <div className={styles.buttonOuter} ref={buttonRef}>
           <motion.div
             className={styles.buttonX}
@@ -391,46 +390,13 @@ const Animation = ({ loadImage, counter }) => {
                 key={index}
                 onClick={() => handleTabChange(index)}
               >
-                {tab.icon} {/* Render the icon from the tab */}
-                {/* SVG Icon Here */}
-                {/* <svg
-                      width="48"
-                      height="60"
-                      viewBox="0 0 48 60"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M16 59H32"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M24 59V38"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M23.9999 1C30.9609 1 34.4414 1 37.1636 2.61138C37.9527 3.07849 38.6824 3.63776 39.337 4.27717C41.5955 6.48283 42.47 9.82051 44.2191 16.4959L44.461 17.4194C46.8393 26.4947 48.0283 31.0323 45.8683 34.22C45.6532 34.5382 45.4162 34.8413 45.1596 35.1279C42.588 38 37.8565 38 28.3931 38H19.607C10.1435 38 5.41184 38 2.84017 35.1279C2.58367 34.8413 2.34691 34.5382 2.13151 34.22C-0.0282107 31.0323 1.16081 26.4947 3.5388 17.4194L3.7808 16.4959C5.52996 9.82051 6.40457 6.48283 8.6628 4.27717C9.31745 3.63776 10.0472 3.07849 10.8363 2.61138C11.3596 2.30163 11.9109 2.05143 12.5096 1.84932"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M40 38V45"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                    </svg> */}
+                {tab.icon} 
               </div>
             ))}
           </motion.div>
         </div>
-      )}
-      {scrollPercentage >= 3 && (
+      )} */}
+      {/* {scrollPercentage >= 3 && (
         <div className={styles.buttonOuter1} ref={buttonRef}>
           <div className={styles.ModalPopupOuter}>
             <div className={styles.footerPopup}>
@@ -459,7 +425,7 @@ const Animation = ({ loadImage, counter }) => {
             </motion.div>
           </div>
         </div>
-      )}
+      )} */}
     </section>
   );
 };

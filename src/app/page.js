@@ -17,8 +17,8 @@ import ServicesPageCard from "@/components/InsightsPageCards/insightsPageCards";
 import TimelineHome from "@/components/timelinehome/page";
 import HomeHeroSection from "@/components/homeHeroSection/page";
 import NewThreeDSlider from "@/components/newthreedslider/newthreedslider";
-
-
+import Preloader from "@/components/preloader";
+import { AnimatePresence } from "framer-motion";
 const HomeBanner = dynamic(() => import("@/components/Home_page_Banner/page"));
 const HomeBanner1 = dynamic(() => import("@/components/Home_page_Banner/page2"));
 
@@ -49,7 +49,10 @@ export default function Home() {
       setCounter(data);
     }
   return (
-    <>  
+    <> 
+     {/* <AnimatePresence mode="wait">
+        {isLoading && <Preloader counter={isCounter} />}
+      </AnimatePresence>  */}
       {width &&(
       <>
         {width > 575 ?(

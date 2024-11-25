@@ -1,0 +1,131 @@
+.introduction {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 99999;
+  background-color: #D5CBA3;
+}
+
+.logoImageOuter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.loadingCounter{
+  z-index: 99;
+  color:red;
+  position: absolute;
+  top:2rem;
+  font-size:100px;
+}
+
+
+.border{
+  width:auto !important;
+}
+
+
+.circle {
+ 
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: stroke 6s ease-out forwards !important;
+  animation-delay: 3s !important;
+}
+
+@keyframes stroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeIn {
+	to {
+		opacity: 1;
+	}
+}
+
+
+
+.circleCenter{
+  display: flex !important;
+  justify-content: center !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+    align-items: center !important;
+    height:100vh !important
+}
+
+
+.logoImage {
+  max-width: 100%; /* Ensure image doesn't exceed container width */
+  max-height: 100%;
+  height: auto;
+  /* width: 6vw; */
+}
+
+
+
+
+.loader {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 50%;
+  box-shadow: rgb(255 255 255 / 28%) 0px 2px 4px, rgb(255 255 255 / 46%) 0px 7px 13px -3px, rgb(255 255 255 / 41%) 0px -3px 0px inset;
+  animation: rotate 2.0s infinite linear;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 1600px) and (max-width: 1920px) {
+  .logoImage {
+    height: auto;
+    /* width: 6vw; */
+  }
+}
+
+@media (min-width: 521px) and (max-width: 1024px) {
+  .logoImage {
+    height: auto;
+    /* width: 8.5vw; */
+  }
+}
+
+@media (min-width: 200px) and (max-width: 520px) {
+  .logoImage {
+    height: auto;
+    /* width: 14vw; */
+  }
+}
