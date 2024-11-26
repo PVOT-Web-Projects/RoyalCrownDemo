@@ -55,7 +55,7 @@ const Animation = ({ loadImage, counter }) => {
     // https://interiormaataassets.humbeestudio.xyz/mainsiteassets/mobile/0001.webp
     const frameCount = 1199;
     const currentFrame = (index) =>
-      `https://interiormaataassets.humbeestudio.xyz/mainsiteassets/RcFrames/${(
+      `https://interiormaataassets.humbeestudio.xyz/mainsiteassets/NewRcFrames/${(
         index + 1
       )
         .toString()
