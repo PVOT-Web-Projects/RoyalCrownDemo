@@ -23,7 +23,7 @@ const Animation = ({ loadImage, counter }) => {
   const defaultFrames = {
     frameCount: 1199, // Define the number of frames for the default view
     imageBaseUrl:
-      "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/RcFrames/",
+      "https://interiormaataassets.humbeestudio.xyz/mainsiteassets/NewRcFrames/",
   };
   // const tabs = [
   //   {
